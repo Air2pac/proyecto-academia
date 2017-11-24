@@ -21,7 +21,7 @@ public class Curso {
 	private String cur_des;
 	
 	@OneToMany
-	@JoinColumn(name="cur_id")
+	@JoinColumn(name="cur_id", nullable = false, insertable = false, updatable = false)
 	private List<Asignatura> asignaturas;
 
 	public Curso() {

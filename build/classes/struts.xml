@@ -42,6 +42,12 @@
 	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
 	 		<result name="input">jsp/addCurso.jsp</result>
 	 	</action>
-	 	
+	 		<action name="AbrirModificarCurso" class="dao.CursoDAO" method="abrirModificarCurso">
+	 		<result name="success">jsp/modificarCurso.jsp</result>
+	 	</action>
+	 	<action name="ModificarCurso" class="dao.CursoDAO" method="modificarCurso">
+	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
+	 		<result name="input">jsp/modificarCurso.jsp</result>
+	 	</action>
  	</package>
 </struts>	 

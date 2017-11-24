@@ -59,7 +59,7 @@ public class ConexionCurso {
 			pasa=false;
 			session.getTransaction().rollback();
 		}
-		
+		session.close();
 		return pasa;
 	}
 	
@@ -67,7 +67,8 @@ public class ConexionCurso {
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
-		System.out.println("--------" + curso.getCur_des());
+		System.out.println("// " + curso.getCur_id() + " // " + curso.getCur_des());
+		
 		try {
 		 session.update(curso); 
 		 System.out.println("Se ha modificado");

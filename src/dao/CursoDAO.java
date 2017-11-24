@@ -65,4 +65,25 @@ public class CursoDAO extends ActionSupport {
 			return INPUT;
 		}
 	}
+	
+	
+	public String abrirModificarCurso(){
+		listadoCursos.clear();
+		listadoCursos = (ArrayList)dao.Leer("Curso", "where cur_id="+curso.getCur_id());
+		curso = listadoCursos.get(0);
+		return SUCCESS;
+	}
+	
+	
+public String modificarCurso(){
+		boolean pasa = conexion.modificarCurso(curso);
+		
+		if(pasa) {
+			listadoCursos.clear();
+			listadoCursos = (ArrayList)dao.Leer("Curso", "");
+			return SUCCESS;
+		}else {
+			return INPUT;
+		}
+	}
 }

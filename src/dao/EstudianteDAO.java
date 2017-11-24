@@ -46,7 +46,6 @@ public class EstudianteDAO extends ActionSupport {
 		listadoEstudiantes.clear();
 		listadoEstudiantes = (ArrayList)dao.Leer("Estudiante", "where est_id="+estudiante.getEst_id());
 		estudiante = listadoEstudiantes.get(0);
-		System.out.println(estudiante.getEst_nombre());
 		return SUCCESS;
 	}
 	
