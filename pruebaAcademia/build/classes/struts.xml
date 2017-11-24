@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+    
+<struts>
+ 	<constant name="struts.devMode" value="true" />
+ 	<package name="default" extends="struts-default">
+	 	<action name="ListadoEstudiantes" class="dao.EstudianteDAO" method="listadoEstudiantes">
+	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+	 	</action>
+	 	<action name="ListadoCursos" class="dao.CursoDAO" method="listadoCursos">
+	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
+	 	</action>
+	 	<action name="BorrarEstudiante" class="dao.EstudianteDAO" method="borrarEstudiantes">
+	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+	 	</action>
+	 	<action name="AbrirModificarEstudiante" class="dao.EstudianteDAO" method="abrirModificarEstudiantes">
+	 		<result name="success">jsp/modificarEstudiante.jsp</result>
+	 	</action>
+	 	<action name="ModificarEstudiante" class="dao.EstudianteDAO" method="modificarEstudiantes">
+	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+	 		<result name="input">jsp/modificarEstudiante.jsp</result>
+	 	</action>
+	 	<action name="AbrirAddEstudiante" class="dao.EstudianteDAO" method="abrirAddEstudiantes">
+	 		<result name="success">jsp/addEstudiante.jsp</result>
+	 		<result name="input">jsp/mantenimientoEstudiantes.jsp</result>
+	 	</action>
+	 	<action name="InsertarEstudiante" class="dao.EstudianteDAO" method="insertarEstudiante">
+	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+	 		<result name="input">jsp/addEstudiante.jsp</result>
+	 	</action>
+	 	<action name="BorrarCurso" class="dao.CursoDAO" method="borrarCurso">
+	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
+	 	</action>
+	 	
+ 	</package>
+</struts>	 
