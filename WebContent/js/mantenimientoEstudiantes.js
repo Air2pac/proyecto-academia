@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$(".eliminar").click(eliminar);
 	$(".modificar").click(modificar);
-	$(".addEstud").click(añadir);
+	$(".addEstud").click(add);
 });
 
 function eliminar(event){
@@ -45,7 +45,7 @@ function modificar(event){
 }
 
 
-function añadir(event){
+function add(event){
 	event.preventDefault();
 //	var i = $(this).parent().siblings().first().children().first();
 //	$(i).attr('checked','checked');

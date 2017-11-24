@@ -13,7 +13,7 @@ function action(id){
         }
 	});
 }
-
+/*
 function eliminar(event){
 	event.preventDefault();
 	var i = $(this).parent().siblings().first().children().first();
@@ -32,4 +32,4 @@ function eliminar(event){
         	alert("ERROR ocurrido");
         }
 	});
-}
+}*/

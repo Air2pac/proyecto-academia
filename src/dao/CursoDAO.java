@@ -15,6 +15,15 @@ public class CursoDAO extends ActionSupport {
 	private DaoGenerico dao = new DaoGenerico();
 	ConexionCurso conexion = new ConexionCurso();
 	
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+	
+	
 	public String listadoCursos() {
 		//Obtiene un listado de los estudiantes
 		listadoCursos = (ArrayList)dao.Leer("Curso", "");

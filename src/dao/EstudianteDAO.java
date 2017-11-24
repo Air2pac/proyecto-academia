@@ -70,8 +70,6 @@ public class EstudianteDAO extends ActionSupport {
 	
 	
 	public String insertarEstudiante() {
-		System.out.println("Entra");
-		System.out.println(estudiante.getEst_nombre());
 		boolean pasa = conexion.insertarEstudiante(estudiante);
 		
 		if(pasa) {

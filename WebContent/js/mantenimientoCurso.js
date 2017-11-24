@@ -4,13 +4,15 @@ $(document).ready(function(){
 	$(".addCurso").click(add);
 });
 
+
 function eliminarCur(event){
 	event.preventDefault();
 	var i = $(this).parent().siblings().first().children().first();
 	$(i).attr('checked','checked');
 	var dataForm = $('#EliminarCursoForm').serialize();
-	//alert('Pasa a borrar');
-	alert(i);
+	alert("Pasa a borrar");
+	
+	
 	$.ajax({
 		type: 'POST',
         url:  "BorrarCurso",
