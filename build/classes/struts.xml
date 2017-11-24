@@ -34,6 +34,14 @@
 	 	<action name="BorrarCurso" class="dao.CursoDAO" method="borrarCurso">
 	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
 	 	</action>
+	 	<action name="AbrirAddCurso" class="dao.CursoDAO" method="abrirAddCurso">
+	 		<result name="success">jsp/addCurso.jsp</result>
+	 		<result name="input">jsp/mantenimientoCursos.jsp</result>
+	 	</action>
+	 	<action name="InsertarCurso" class="dao.CursoDAO" method="insertarCurso">
+	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
+	 		<result name="input">jsp/addCurso.jsp</result>
+	 	</action>
 	 	
  	</package>
 </struts>	 

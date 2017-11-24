@@ -23,7 +23,7 @@ public class ConexionCurso {
 		//session =sessionFactory.openSession(); 
 	}
 	
-	public boolean guardarCurso(Curso curso){
+	public boolean insertarCurso(Curso curso){
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 

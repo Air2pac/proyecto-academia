@@ -15,8 +15,7 @@
 			<div class="col-11">
 				<s:form id="AddCurso">
 <!-- 				<input style="display: none;" type="text" name="estudiante.est_id"></input></br> -->
-					<input type="text" name="curso.cur_id" label="Nombre estudiante">Nombre</input></br>
-					<input type="text" name="curso.cur_des" label="Dni estudiante" >Dni</input></br>
+					<input type="text" name="curso.cur_des" label="Descripción del curso" >Descripción del curso</input></br>
 					<button title="confirmar" class="btn btn-primary confirmarAdd"> CONFIRMAR</button>
 				</s:form>
 			</div>

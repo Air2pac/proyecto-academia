@@ -17,7 +17,7 @@
 			<div class="col-7">
 				<button title="Añadir" class="btn btn-link addCurso">
 					<i style="color: green;" class="fa fa-plus-circle fa-lg"
-						aria-hidden="true">Añadir Estudiante</i>
+						aria-hidden="true">Añadir Curso</i>
 				</button>
 				<s:form id="EliminarCursoForm" method="post">
 				<table class="table table-hover table-sm">

@@ -48,4 +48,21 @@ public class CursoDAO extends ActionSupport {
 			return SUCCESS;
 		
 	}
+	public String abrirAddCurso(){
+		return SUCCESS;
+	}
+	
+	public String insertarCurso() {
+		
+		boolean pasa = conexion.insertarCurso(curso);
+		
+		if(pasa) {
+			listadoCursos.clear();
+			listadoCursos = (ArrayList)dao.Leer("Curso", "");
+			return SUCCESS;
+		}else {
+			System.out.println("error");
+			return INPUT;
+		}
+	}
 }
