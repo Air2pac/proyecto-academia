@@ -36,12 +36,12 @@
 										name="curso.cur_id" value="${cur_id}">${cur_id}</td>
 							<td><s:property value="cur_des"/></td>
 							<td>
-								<button title="modificarCur" class="btn btn-link modificarCur">
+								<button title="modificar" class="btn btn-link modificarCur">
 										<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
 								</button>
 							</td>
 							<td>
-								<button title="eliminarCur" class="btn btn-link eliminarCur" >
+								<button title="eliminar" class="btn btn-link eliminarCur" >
 									<i style="color: red;" class="fa fa-window-close fa-lg"
 											aria-hidden="true"></i>
 								</button>

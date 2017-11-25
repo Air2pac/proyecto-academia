@@ -13,9 +13,16 @@
 	 	<action name="ListadoCursos" class="dao.CursoDAO" method="listadoCursos">
 	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
 	 	</action>
+	 	<action name="ListadoAsignaturas" class="dao.AsignaturaDAO" method="listadoAsignaturas">
+	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+	 	</action>
+	 	
 	 	<action name="BorrarEstudiante" class="dao.EstudianteDAO" method="borrarEstudiantes">
 	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
 	 	</action>
+	 	
+	 	
+	 
 	 	<action name="AbrirModificarEstudiante" class="dao.EstudianteDAO" method="abrirModificarEstudiantes">
 	 		<result name="success">jsp/modificarEstudiante.jsp</result>
 	 	</action>
@@ -49,5 +56,12 @@
 	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
 	 		<result name="input">jsp/modificarCurso.jsp</result>
 	 	</action>
+	 		<action name="AbrirAddAsignatura" class="dao.CursoDAO" method="abrirAddAsignatura">
+	 		<result name="success">jsp/addAsignatura.jsp</result>
+	 		<result name="input">jsp/mantenimientoAsignaturas.jsp</result>
+	 	</action>
+	 	
+	 	
+	 	
  	</package>
 </struts>	 

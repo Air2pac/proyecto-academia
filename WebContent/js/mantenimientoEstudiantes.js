@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$(".eliminar").click(eliminar);
 	$(".modificar").click(modificar);
-	$(".addEstud").click(add);
+	$(".addAsign").click(add);
 });
 
 function eliminar(event){
@@ -53,7 +53,7 @@ function add(event){
 	//alert(i);
 	$.ajax({
 		type: 'POST',
-        url:  "AbrirAddEstudiante",
+        url:  "AbrirAddAsignatura",
         //data : dataForm,
         success:  function (response) {
 //        	$(i).parentsUntil('tbody').last().css('display','none');
