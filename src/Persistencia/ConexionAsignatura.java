@@ -24,7 +24,7 @@ public class ConexionAsignatura {
 		//session =sessionFactory.openSession(); 
 	}
 	
-	public boolean insertarCurso(Asignatura asignatura){
+	public boolean insertarAsignatura(Asignatura asignatura){
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
@@ -83,11 +83,13 @@ public class ConexionAsignatura {
 		return pasa;
 	}
 	
-	public List<Asignatura> listarCursos(){
-		
+	public List<Asignatura> listarAsignaturas(){
+		session =sessionFactory.openSession(); 
 		Query query = session.createQuery("SELECT a FROM Asignatura a");
 		List<Asignatura> listaAsignaturas = query.list();
+		session.close();
 		return listaAsignaturas;
+		
 	}
 	
 	public String devolverDescripcion(int id){
@@ -96,9 +98,18 @@ public class ConexionAsignatura {
 	}
 	
 	public List<Curso> listarCursos(){
-		
-		Query query = session.createQuery("SELECT a FROM Curso c");
+		session =sessionFactory.openSession(); 
+		Query query = session.createQuery("SELECT c.cur_des FROM Curso c");
 		List<Curso> listaCurso = query.list();
+
+		session.close();
 		return listaCurso;
+	}
+	public int devolverIdCurso(String des){
+		session =sessionFactory.openSession(); 
+		Curso curso =  (Curso) session.createQuery("SELECT c FROM Curso c WHERE c.cur_des='"+des+"'").uniqueResult();
+		session.close();
+	
+		return curso.getCur_id();
 	}
 }

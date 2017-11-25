@@ -2,11 +2,15 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -26,7 +30,12 @@ public class Asignatura {
 	@Column(name="asi_des")
 	private String asi_des;
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas" )
+	/*@JoinTable(
+	        name = "pra_asixest", 
+	        joinColumns = { @JoinColumn(name = "asi_id") }, 
+	        inverseJoinColumns = { @JoinColumn(name = "asi_id") }
+	    )*/
 	private List<Estudiante> estudiantes;
 	
 	public Asignatura() {

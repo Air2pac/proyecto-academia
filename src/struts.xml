@@ -56,11 +56,14 @@
 	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
 	 		<result name="input">jsp/modificarCurso.jsp</result>
 	 	</action>
-	 		<action name="AbrirAddAsignatura" class="dao.CursoDAO" method="abrirAddAsignatura">
+	 	<action name="AbrirAddAsignatura" class="dao.AsignaturaDAO" method="abrirAddAsignatura">
 	 		<result name="success">jsp/addAsignatura.jsp</result>
 	 		<result name="input">jsp/mantenimientoAsignaturas.jsp</result>
 	 	</action>
-	 	
+	 	<action name="InsertarAsignatura" class="dao.AsignaturaDAO" method="insertarAsignatura">
+	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+	 		<result name="input">jsp/addAsignatura.jsp</result>
+	 	</action>
 	 	
 	 	
  	</package>

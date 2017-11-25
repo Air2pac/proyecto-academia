@@ -19,7 +19,7 @@ public class AsignaturaDAO extends ActionSupport {
 	private Curso curso;
 	private DaoGenerico dao = new DaoGenerico();
 	ConexionAsignatura conexion = new ConexionAsignatura();
-	private List<Curso> listaCursos = new ArrayList<Curso>();
+	private List<Curso> listCursos = new ArrayList<Curso>();
 	
 	public String listadoAsignaturas() {
 		//Obtiene un listado de los estudiantes
@@ -45,10 +45,37 @@ public class AsignaturaDAO extends ActionSupport {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-		
+	public List<Curso> getListCursos() {
+		return listCursos;
+	}
+
+	public void setListCursos(List<Curso> listCursos) {
+		this.listCursos = listCursos;
+	}
+	
 	public String abrirAddAsignatura(){
+		setListCursos(conexion.listarCursos());
 		return SUCCESS;
 	}
 
+	public String insertarAsignatura(){
+		
+		int id = conexion.devolverIdCurso(asignatura.getCurso().getCur_des());
+		
+		curso = asignatura.getCurso();
+		curso.setCur_id(id);
+		asignatura.setCurso(curso);
+		System.out.println(curso.getCur_id() + " // " + curso.getCur_des());
+		boolean pasa = conexion.insertarAsignatura(asignatura);
+		
+		if(pasa) {
+			listadoAsignaturas.clear();
+			listadoAsignaturas = conexion.listarAsignaturas();
+			return SUCCESS;
+		}else {
+			System.out.println("error");
+			return INPUT;
+		}
+	}
 	
 }
