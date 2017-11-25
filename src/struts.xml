@@ -71,8 +71,10 @@
 	 	<action name="AbrirModificarAsignatura" class="dao.AsignaturaDAO" method="abrirModificarAsignatura">
 	 		<result name="success">jsp/modificarAsignatura.jsp</result>
 	 	</action>
-	 	
-	 	
+	 	<action name="ModificarAsignatura" class="dao.AsignaturaDAO" method="modificarAsignatura">
+	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+	 		<result name="input">jsp/modificarAsignatura.jsp</result>
+	 	</action>
 	 	
  	</package>
 </struts>	 

@@ -18,7 +18,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="pra_asignaturas")
 public class Asignatura {
-
 	@Id
 	@Column(name="asi_id")
 	private int asi_id;
@@ -30,7 +29,7 @@ public class Asignatura {
 	@Column(name="asi_des")
 	private String asi_des;
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas" )
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas", cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE } )
 	/*@JoinTable(
 	        name = "pra_asixest", 
 	        joinColumns = { @JoinColumn(name = "asi_id") }, 
@@ -81,5 +80,10 @@ public class Asignatura {
 
 	public void setEstudiantes(List<Estudiante> estudiantes) {
 		this.estudiantes = estudiantes;
+	}
+	@Override
+	public String toString() {
+		return "Asignatura [asi_id=" + asi_id + ", curso=" + curso
+				+ ", asi_des=" + asi_des + ", estudiantes=" + estudiantes + "]";
 	}
 }

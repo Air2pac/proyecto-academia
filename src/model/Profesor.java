@@ -1,8 +1,16 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +30,12 @@ public class Profesor {
 	@Column(name="pro_ape2")
 	private String pro_ape2;
 	
+	@ManyToMany(cascade = {CascadeType.ALL}) 
+	@JoinTable(name="pra_asixpro", joinColumns={@JoinColumn(name="pro_id")}, inverseJoinColumns={@JoinColumn(name="asi_id")}) 
+	private List<Asignatura> asignaturas;
+	
+	
+
 	public Profesor() {
 		this.pro_id = 0;
 		this.pro_nombre = "";
@@ -68,5 +82,11 @@ public class Profesor {
 	public void setPro_ape2(String pro_ape2) {
 		this.pro_ape2 = pro_ape2;
 	}
+	public List<Asignatura> getAsignaturas() {
+		return asignaturas;
+	}
 
+	public void setAsignaturas(List<Asignatura> asignaturas) {
+		this.asignaturas = asignaturas;
+	}
 }

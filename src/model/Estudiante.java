@@ -32,8 +32,6 @@ public class Estudiante {
 	@Column(name="est_ape2")
 	private String est_ape2;
 	
-	@ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
-	@JoinTable(name="pra_asixest", joinColumns = {@JoinColumn(name="est_id")}, inverseJoinColumns = {@JoinColumn(name="asi_id")})
 	private List<Asignatura> asignaturas;
 	
 	public Estudiante() {

@@ -3,6 +3,10 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import Persistencia.ConexionAsignatura;
 import Persistencia.ConexionCurso;
 
@@ -23,7 +27,7 @@ public class AsignaturaDAO extends ActionSupport {
 	
 	public String listadoAsignaturas() {
 		//Obtiene un listado de los estudiantes
-		listadoAsignaturas = (ArrayList)dao.Leer("Asignatura", "");
+		listadoAsignaturas = conexion.listarAsignaturas();
 		return SUCCESS;
 	}
 	
@@ -79,11 +83,58 @@ public class AsignaturaDAO extends ActionSupport {
 	}
 	
 	public String borrarAsignatura(){
-		System.out.println("pasa");
 		System.out.println(asignatura.getAsi_id());
-		conexion.eliminarCurso(asignatura);
+		conexion.eliminarAsignatura(asignatura);
 		listadoAsignaturas.clear();
-		listadoAsignaturas = (ArrayList)dao.Leer("Asignatura", "");
+		listadoAsignaturas = conexion.listarAsignaturas();
 		return SUCCESS;
+	}
+	
+	public String abrirModificarAsignatura(){
+		setListCursos(conexion.listarCursos());
+		listadoAsignaturas.clear();
+		listadoAsignaturas = (ArrayList)dao.Leer("Asignatura", "where asi_id="+asignatura.getAsi_id()+"");
+		asignatura = listadoAsignaturas.get(0);
+		return SUCCESS;
+	}
+	
+	
+public String modificarAsignatura(){
+	boolean pasa= true;
+	
+	int id = conexion.devolverIdCurso(asignatura.getCurso().getCur_des());
+	curso = asignatura.getCurso();
+	curso.setCur_id(id);
+	asignatura.setCurso(curso);	
+	
+	Configuration configuration = new Configuration();
+	configuration.configure();
+	SessionFactory sessionFactory = configuration.buildSessionFactory();
+	Session session =sessionFactory.openSession();
+	
+	session.beginTransaction();
+
+	try {
+		session.update(asignatura);
+		System.out.println("Se ha modificado");
+		session.getTransaction().commit();
+
+	} catch (Exception e) {
+		System.out.println("Error al modificar " + e);
+		pasa=false;
+		session.getTransaction().rollback();
+	}finally{
+		session.close();
+	}
+	
+//	boolean pasa = conexion.modificarAsignatura(asignatura);
+		
+		if(pasa) {
+			listadoAsignaturas.clear();
+			listadoAsignaturas = conexion.listarAsignaturas();
+			return SUCCESS;
+		}else {
+			return INPUT;
+		}
 	}
 }

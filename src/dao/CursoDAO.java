@@ -9,12 +9,12 @@ import Persistencia.ConexionCurso;
 import model.Curso;
 
 public class CursoDAO extends ActionSupport {
-	
+
 	private Curso curso;
 	private List<Curso> listadoCursos = new ArrayList<Curso>();
 	private DaoGenerico dao = new DaoGenerico();
 	ConexionCurso conexion = new ConexionCurso();
-	
+
 	public Curso getCurso() {
 		return curso;
 	}
@@ -22,11 +22,10 @@ public class CursoDAO extends ActionSupport {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-	
-	
+
 	public String listadoCursos() {
-		//Obtiene un listado de los estudiantes
-		listadoCursos = (ArrayList)dao.Leer("Curso", "");
+		// Obtiene un listado de los estudiantes
+		listadoCursos = (ArrayList) dao.Leer("Curso", "");
 		return SUCCESS;
 	}
 
@@ -41,48 +40,48 @@ public class CursoDAO extends ActionSupport {
 	public String borrarCurso() {
 		System.out.println("pasa");
 		System.out.println("--- " + curso.getCur_id());
-			conexion.eliminarCurso(curso);
-			//dao.Borrar(estudiante);
-			listadoCursos.clear();
-			listadoCursos = (ArrayList)dao.Leer("Curso", "");
-			return SUCCESS;
-		
+		conexion.eliminarCurso(curso);
+		// dao.Borrar(estudiante);
+		listadoCursos.clear();
+		listadoCursos = (ArrayList) dao.Leer("Curso", "");
+		return SUCCESS;
+
 	}
-	public String abrirAddCurso(){
+
+	public String abrirAddCurso() {
 		return SUCCESS;
 	}
-	
+
 	public String insertarCurso() {
-		
+
 		boolean pasa = conexion.insertarCurso(curso);
-		
-		if(pasa) {
+
+		if (pasa) {
 			listadoCursos.clear();
-			listadoCursos = (ArrayList)dao.Leer("Curso", "");
+			listadoCursos = (ArrayList) dao.Leer("Curso", "");
 			return SUCCESS;
-		}else {
+		} else {
 			System.out.println("error");
 			return INPUT;
 		}
 	}
-	
-	
-	public String abrirModificarCurso(){
+
+	public String abrirModificarCurso() {
 		listadoCursos.clear();
-		listadoCursos = (ArrayList)dao.Leer("Curso", "where cur_id="+curso.getCur_id());
+		listadoCursos = (ArrayList) dao.Leer("Curso",
+				"where cur_id=" + curso.getCur_id());
 		curso = listadoCursos.get(0);
 		return SUCCESS;
 	}
-	
-	
-public String modificarCurso(){
+
+	public String modificarCurso() {
 		boolean pasa = conexion.modificarCurso(curso);
-		
-		if(pasa) {
+
+		if (pasa) {
 			listadoCursos.clear();
-			listadoCursos = (ArrayList)dao.Leer("Curso", "");
+			listadoCursos = (ArrayList) dao.Leer("Curso", "");
 			return SUCCESS;
-		}else {
+		} else {
 			return INPUT;
 		}
 	}

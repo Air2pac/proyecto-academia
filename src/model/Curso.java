@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Curso {
 	@Column(name="cur_des")
 	private String cur_des;
 	
-	@OneToMany
+	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinColumn(name="cur_id", nullable = false, insertable = false, updatable = false)
 	private List<Asignatura> asignaturas;
 
