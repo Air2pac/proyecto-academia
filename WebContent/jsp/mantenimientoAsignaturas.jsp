@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>mantenimiento Asignatura</title>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="css/mantenimientoEstudiantes.css">
 <script src="js/mantenimientoAsignaturas.js"></script>
 </head>
@@ -34,7 +35,7 @@
 										name="asignatura.asi_id" value="${asi_id}">${asi_id}</td>
 									<td><s:property value="asi_des" /></td>
 									<td><s:property value="curso.cur_des" /></td>
-				
+
 									<td>
 										<button title="modificar" class="btn btn-link modificarAsig">
 											<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>

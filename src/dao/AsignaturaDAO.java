@@ -78,4 +78,12 @@ public class AsignaturaDAO extends ActionSupport {
 		}
 	}
 	
+	public String borrarAsignatura(){
+		System.out.println("pasa");
+		System.out.println(asignatura.getAsi_id());
+		conexion.eliminarCurso(asignatura);
+		listadoAsignaturas.clear();
+		listadoAsignaturas = (ArrayList)dao.Leer("Asignatura", "");
+		return SUCCESS;
+	}
 }

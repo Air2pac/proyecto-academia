@@ -34,8 +34,6 @@ public class EstudianteDAO extends ActionSupport {
 	}
 	
 	public String borrarEstudiantes() {
-		System.out.println(estudiante.getEst_id());
-//		Estudiante estudiante2 = (Estudiante)dao.sesion.load(Estudiante.class, estudiante.getEst_id());
 		dao.Borrar(estudiante);
 		listadoEstudiantes.clear();
 		listadoEstudiantes = (ArrayList)dao.Leer("Estudiante", "");
@@ -94,65 +92,5 @@ public class EstudianteDAO extends ActionSupport {
 	}
 
 
-	
-	
-//	public String addEstudiante() {
-//		//conectar a la base de datos y añadir a la lista los estudiantes leídos
-//				String ret;
-//				Connection conn = null;
-//				try {
-//					String URL = "jdbc:mysql://localhost/academia";
-//					Class.forName("com.mysql.jdbc.Driver");
-//					conn = DriverManager.getConnection(URL,"root","");
-//					String sql = "INSERT INTO pra_estudiantes VALUES('0','"+estudiante.getEst_dni()+"','"+estudiante.getEst_nombre()+"'"
-//							+ ",'"+estudiante.getEst_ape1()+"','"+estudiante.getEst_ape2()+"')";
-//					PreparedStatement ps = conn.prepareStatement(sql);
-//					ps.executeUpdate();
-//
-//				}catch(Exception e) {
-//					System.out.println(e.toString());
-//					ret = "error";
-//				}finally {
-//					if(conn != null) {
-//						try {
-//							conn.close();
-//						}catch(Exception e) {
-//							
-//						}
-//					}
-//				}
-//		
-//		return listadoEstudiantes();
-//		
-//	}//addEstudiante
-	
-//	public String deleteEstudiante() {
-//		
-//		String ret;
-//		Connection conn = null;
-//		try {
-//			String URL = "jdbc:mysql://localhost/academia";
-//			Class.forName("com.mysql.jdbc.Driver");
-//			conn = DriverManager.getConnection(URL,"root","");
-//			String sql = "DELETE FROM pra_estudiantes WHERE est_id = "+estudiante.getEst_id();
-//			PreparedStatement ps = conn.prepareStatement(sql);
-//			ps.executeUpdate();
-//
-//		}catch(Exception e) {
-//			System.out.println(e.toString());
-//			ret = "error";
-//		}finally {
-//			if(conn != null) {
-//				try {
-//					conn.close();
-//				}catch(Exception e) {
-//					
-//				}
-//			}
-//		}
-//
-//		return listadoEstudiantes();
-//	}//deleteEstudiante
-	
 	
 }

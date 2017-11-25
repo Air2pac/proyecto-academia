@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	$(".eliminar").click(eliminar);
-	$(".modificar").click(modificar);
+	$(".eliminarAsig").click(eliminar);
+	$(".modificarAsig").click(modificar);
 	$(".addAsign").click(add);
 });
 
@@ -8,11 +8,10 @@ function eliminar(event){
 	event.preventDefault();
 	var i = $(this).parent().siblings().first().children().first();
 	$(i).attr('checked','checked');
-	var dataForm = $('#eliminarEstudianteForm').serialize();
-	//alert(i);
+	var dataForm = $('#eliminarAsignaturaForm').serialize();
 	$.ajax({
 		type: 'POST',
-        url:  "BorrarEstudiante",
+        url:  "BorrarAsignatura",
         data : dataForm,
         success:  function (response) {
 //        	$(i).parentsUntil('tbody').last().css('display','none');
@@ -28,11 +27,11 @@ function modificar(event){
 	event.preventDefault();
 	var i = $(this).parent().siblings().first().children().first();
 	$(i).attr('checked','checked');
-	var dataForm = $('#eliminarEstudianteForm').serialize();
+	var dataForm = $('#eliminarAsignaturaForm').serialize();
 	alert(i);
 	$.ajax({
 		type: 'POST',
-        url:  "AbrirModificarEstudiante",
+        url:  "AbrirModificarAsignatura",
         data : dataForm,
         success:  function (response) {
 //        	$(i).parentsUntil('tbody').last().css('display','none');

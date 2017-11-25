@@ -65,6 +65,14 @@
 	 		<result name="input">jsp/addAsignatura.jsp</result>
 	 	</action>
 	 	
+	 	<action name="BorrarAsignatura" class="dao.AsignaturaDAO" method="borrarAsignatura">
+	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+	 	</action>
+	 	<action name="AbrirModificarAsignatura" class="dao.AsignaturaDAO" method="abrirModificarAsignatura">
+	 		<result name="success">jsp/modificarAsignatura.jsp</result>
+	 	</action>
+	 	
+	 	
 	 	
  	</package>
 </struts>	 
