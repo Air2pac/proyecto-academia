@@ -1,33 +1,48 @@
 package Persistencia;
+
 import java.util.List;
 
-import model.Asignatura;
-import model.Curso;
 import model.Estudiante;
+import model.Profesor;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-
-public class ConexionEstudiante {
+public class ConexionProfesor {
 	private static SessionFactory sessionFactory;
 	private static Session session;
 	
-	public ConexionEstudiante(){
+	public ConexionProfesor(){
 		Configuration configuration = new Configuration(); 
 		configuration.configure();
 		sessionFactory = configuration.buildSessionFactory();
 		//session =sessionFactory.openSession(); 
 	}
-	
-	public boolean modificarEstudiante(Estudiante estudiante){
+	public boolean eliminarProfesor(Profesor profesor){
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
 		try {
-		 session.update(estudiante); 
+		 session.delete(profesor); 
+		 System.out.println("Se ha eliminado");
+		 session.getTransaction().commit();
+		session.close();
+		}catch(Exception e) {
+			System.out.println("Error al modificar " + e);
+			pasa=false;
+			session.getTransaction().rollback();
+		}
+		
+		return pasa;
+	}
+	public boolean modificarProfesor(Profesor profesor){
+		boolean pasa=true;
+		session =sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		try {
+		 session.update(profesor); 
 		 System.out.println("Se ha modificado");
 		 session.getTransaction().commit();
 		session.close();
@@ -41,13 +56,12 @@ public class ConexionEstudiante {
 	}
 	
 	
-	public boolean insertarEstudiante(Estudiante estudiante){
+	public boolean insertarProfesor(Profesor profesor){
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
-		System.out.println("--------" + estudiante.getEst_nombre());
 		try {
-		 session.save(estudiante); 
+		 session.save(profesor); 
 		 System.out.println("Se ha insertado");
 		 session.getTransaction().commit();
 		session.close();
@@ -60,31 +74,30 @@ public class ConexionEstudiante {
 		return pasa;
 	}
 	
-	public List<Asignatura> listarAsingatura(){
+	public List<Profesor> listarAsingatura(){
 		session = sessionFactory.openSession();
 		Query query = session.createQuery("SELECT a.asi_des FROM Asignatura a");
-		List<Asignatura> listaAsignaturas = query.list();
+		List<Profesor> listaAsignaturas = query.list();
 		session.close();
 		return listaAsignaturas;
 	}
-	public List<Estudiante> listarEstudiante(){
+	public List<Profesor> listarProfesores(){
 		session = sessionFactory.openSession();
-		Query query = session.createQuery("SELECT e FROM Estudiante e");
-		List<Estudiante> listaEstudiantes = query.list();
+		Query query = session.createQuery("SELECT p FROM Profesor p");
+		List<Profesor> listaProfesor = query.list();
 		session.close();
-		return listaEstudiantes;
+		return listaProfesor;
 	}
 	
-	public Asignatura devolverAsignatura(String des){
+	public Profesor devolverAsignatura(String des){
 		session = sessionFactory.openSession();
-		Asignatura asignatura = (Asignatura) session.createQuery(
-				"SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
+		Profesor asignatura = (Profesor) session.createQuery("SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
 				.uniqueResult();
 		session.close();
 		return asignatura;
 	}
 	
-	public boolean insertarEstuAsignatura(Estudiante estudiante){
+	/*public boolean insertarEstuAsignatura(Profesor estudiante){
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
@@ -101,6 +114,5 @@ public class ConexionEstudiante {
 		}
 		
 		return pasa;
-	}
-	
+	}*/
 }

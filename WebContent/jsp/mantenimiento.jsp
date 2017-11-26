@@ -5,11 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Mantenimiento</title>
-<!-- 	<link rel="stylesheet" href="js/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="css/mantenimiento.css" />
-<!-- 	<link rel="stylesheet" href="css/font-awesome.min.css" /> -->
-<!-- 	<script src="js/bootstrap.min.js"></script> -->
-<!-- 	<script src="js/jquery-3.2.1.min.js"></script> -->
+
 	<script src="js/mantenimiento.js"></script>
 </head>
 <body>

@@ -5,8 +5,10 @@ $(document).ready(function(){
 });
 
 function mostrar(){
-	estilos($(this));	
-	$('main').load('jsp/'+ $(this).attr('id') + '.jsp' );
+	estilos($(this));
+	
+	var file = 'jsp/'+ $(this).attr('id') + '.jsp';
+	$('main').load( file);
 }//mostrar
 
 function estilos(boton){

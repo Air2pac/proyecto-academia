@@ -2,90 +2,129 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
-    
-    
+
+
 <struts>
- 	<constant name="struts.devMode" value="true" />
- 	<package name="default" extends="struts-default">
-	 	<action name="ListadoEstudiantes" class="dao.EstudianteDAO" method="listadoEstudiantes">
-	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
-	 	</action>
-	 	<action name="ListadoCursos" class="dao.CursoDAO" method="listadoCursos">
-	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
-	 	</action>
-	 	<action name="ListadoAsignaturas" class="dao.AsignaturaDAO" method="listadoAsignaturas">
-	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
-	 	</action>
-	 	
-	 	<action name="BorrarEstudiante" class="dao.EstudianteDAO" method="borrarEstudiantes">
-	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
-	 	</action>
-	 	
-	 	
-	 
-	 	<action name="AbrirModificarEstudiante" class="dao.EstudianteDAO" method="abrirModificarEstudiantes">
-	 		<result name="success">jsp/modificarEstudiante.jsp</result>
-	 	</action>
-	 	<action name="ModificarEstudiante" class="dao.EstudianteDAO" method="modificarEstudiantes">
-	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
-	 		<result name="input">jsp/modificarEstudiante.jsp</result>
-	 	</action>
-	 	<action name="AbrirAddEstudiante" class="dao.EstudianteDAO" method="abrirAddEstudiantes">
-	 		<result name="success">jsp/addEstudiante.jsp</result>
-	 		<result name="input">jsp/mantenimientoEstudiantes.jsp</result>
-	 	</action>
-	 	<action name="InsertarEstudiante" class="dao.EstudianteDAO" method="insertarEstudiante">
-	 		<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
-	 		<result name="input">jsp/addEstudiante.jsp</result>
-	 	</action>
-	 	<action name="BorrarCurso" class="dao.CursoDAO" method="borrarCurso">
-	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
-	 	</action>
-	 	<action name="AbrirAddCurso" class="dao.CursoDAO" method="abrirAddCurso">
-	 		<result name="success">jsp/addCurso.jsp</result>
-	 		<result name="input">jsp/mantenimientoCursos.jsp</result>
-	 	</action>
-	 	<action name="InsertarCurso" class="dao.CursoDAO" method="insertarCurso">
-	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
-	 		<result name="input">jsp/addCurso.jsp</result>
-	 	</action>
-	 	<action name="AbrirModificarCurso" class="dao.CursoDAO" method="abrirModificarCurso">
-	 		<result name="success">jsp/modificarCurso.jsp</result>
-	 	</action>
-	 	<action name="ModificarCurso" class="dao.CursoDAO" method="modificarCurso">
-	 		<result name="success">jsp/mantenimientoCursos.jsp</result>
-	 		<result name="input">jsp/modificarCurso.jsp</result>
-	 	</action>
-	 	<action name="AbrirAddAsignatura" class="dao.AsignaturaDAO" method="abrirAddAsignatura">
-	 		<result name="success">jsp/addAsignatura.jsp</result>
-	 		<result name="input">jsp/mantenimientoAsignaturas.jsp</result>
-	 	</action>
-	 	<action name="InsertarAsignatura" class="dao.AsignaturaDAO" method="insertarAsignatura">
-	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
-	 		<result name="input">jsp/addAsignatura.jsp</result>
-	 	</action>
-	 	
-	 	<action name="BorrarAsignatura" class="dao.AsignaturaDAO" method="borrarAsignatura">
-	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
-	 	</action>
-	 	<action name="AbrirModificarAsignatura" class="dao.AsignaturaDAO" method="abrirModificarAsignatura">
-	 		<result name="success">jsp/modificarAsignatura.jsp</result>
-	 	</action>
-	 	<action name="ModificarAsignatura" class="dao.AsignaturaDAO" method="modificarAsignatura">
-	 		<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
-	 		<result name="input">jsp/modificarAsignatura.jsp</result>
-	 	</action>
-	 	
-	 	
-	 	
-	 	
-	 	<action name="AbrirAddEstAsign" class="dao.EstudianteDAO" method="abrirAddEstAsign">
-	 		<result name="success">jsp/addEstAsignatura.jsp</result>
-	 	</action>
-	 		<action name="AddEstAsign" class="dao.EstudianteDAO" method="addEstAsign">
-	 		<result name="success">jsp/mantenimientoEstuduantes.jsp</result>
-	 		<result name="input">jsp/addEstAsignatura.jsp</result>
-	 	</action>
-	 	
- 	</package>
+	<constant name="struts.devMode" value="true" />
+	<package name="default" extends="struts-default">
+
+
+		<action name="ListadoEstudiantes" class="dao.EstudianteDAO"	method="listadoEstudiantes">
+			<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+		</action>
+		
+		<action name="BorrarEstudiante" class="dao.EstudianteDAO"
+			method="borrarEstudiantes">
+			<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+		</action>
+
+		<action name="AbrirModificarEstudiante" class="dao.EstudianteDAO"
+			method="abrirModificarEstudiantes">
+			<result name="success">jsp/modificarEstudiante.jsp</result>
+		</action>
+		<action name="ModificarEstudiante" class="dao.EstudianteDAO"
+			method="modificarEstudiantes">
+			<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+			<result name="input">jsp/modificarEstudiante.jsp</result>
+		</action>
+		<action name="AbrirAddEstudiante" class="dao.EstudianteDAO"
+			method="abrirAddEstudiantes">
+			<result name="success">jsp/addEstudiante.jsp</result>
+			<result name="input">jsp/mantenimientoEstudiantes.jsp</result>
+		</action>
+		<action name="InsertarEstudiante" class="dao.EstudianteDAO"
+			method="insertarEstudiante">
+			<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
+			<result name="input">jsp/addEstudiante.jsp</result>
+		</action>
+
+		<action name="AbrirAddEstAsign" class="dao.EstudianteDAO"
+			method="abrirAddEstAsign">
+			<result name="success">jsp/addEstAsignatura.jsp</result>
+		</action>
+		<action name="AddEstAsign" class="dao.EstudianteDAO" method="addEstAsign">
+			<result name="success">jsp/mantenimientoEstuduantes.jsp</result>
+			<result name="input">jsp/addEstAsignatura.jsp</result>
+		</action>
+
+
+		<action name="ListadoCursos" class="dao.CursoDAO" method="listadoCursos">
+			<result name="success">jsp/mantenimientoCursos.jsp</result>
+		</action>
+
+		<action name="BorrarCurso" class="dao.CursoDAO" method="borrarCurso">
+			<result name="success">jsp/mantenimientoCursos.jsp</result>
+		</action>
+		<action name="AbrirAddCurso" class="dao.CursoDAO" method="abrirAddCurso">
+			<result name="success">jsp/addCurso.jsp</result>
+			<result name="input">jsp/mantenimientoCursos.jsp</result>
+		</action>
+		<action name="InsertarCurso" class="dao.CursoDAO" method="insertarCurso">
+			<result name="success">jsp/mantenimientoCursos.jsp</result>
+			<result name="input">jsp/addCurso.jsp</result>
+		</action>
+		<action name="AbrirModificarCurso" class="dao.CursoDAO" method="abrirModificarCurso">
+			<result name="success">jsp/modificarCurso.jsp</result>
+		</action>
+		<action name="ModificarCurso" class="dao.CursoDAO" method="modificarCurso">
+			<result name="success">jsp/mantenimientoCursos.jsp</result>
+			<result name="input">jsp/modificarCurso.jsp</result>
+		</action>
+		
+		
+		
+		<action name="ListadoAsignaturas" class="dao.AsignaturaDAO"
+			method="listadoAsignaturas">
+			<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+		</action>
+		<action name="AbrirAddAsignatura" class="dao.AsignaturaDAO"
+			method="abrirAddAsignatura">
+			<result name="success">jsp/addAsignatura.jsp</result>
+			<result name="input">jsp/mantenimientoAsignaturas.jsp</result>
+		</action>
+		<action name="InsertarAsignatura" class="dao.AsignaturaDAO"
+			method="insertarAsignatura">
+			<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+			<result name="input">jsp/addAsignatura.jsp</result>
+		</action>
+
+		<action name="BorrarAsignatura" class="dao.AsignaturaDAO"
+			method="borrarAsignatura">
+			<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+		</action>
+		<action name="AbrirModificarAsignatura" class="dao.AsignaturaDAO"
+			method="abrirModificarAsignatura">
+			<result name="success">jsp/modificarAsignatura.jsp</result>
+		</action>
+		<action name="ModificarAsignatura" class="dao.AsignaturaDAO"
+			method="modificarAsignatura">
+			<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+			<result name="input">jsp/modificarAsignatura.jsp</result>
+		</action>
+
+
+		
+		
+		<action name="ListadoProfesores" class="dao.ProfesorDAO" method="listadoPofesores">
+			<result name="success">jsp/mantenimientoPofesores.jsp</result>
+		</action>
+		<action name="BorrarProfesor" class="dao.ProfesorDAO" method="borrarProfesor">
+			<result name="success">jsp/mantenimientoProfesores.jsp</result>
+		</action>
+		<action name="AbrirModificarProfesor" class="dao.ProfesorDAO" method="abrirModificarProfesor">
+			<result name="success">jsp/modificarProfesor.jsp</result>
+		</action>
+		<action name="ModificarProfesor" class="dao.ProfesorDAO" method="modificarProfesor">
+			<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
+			<result name="input">jsp/modificarAsignatura.jsp</result>
+		</action>
+		<action name="AbrirAddProAsign" class="dao.ProfesorDAO" method="abrirAddProAsign">
+			<result name="success">jsp/addProAsignatura.jsp</result>
+		</action>
+		<action name="AddProAsign" class="dao.ProfesorDAO" method="addProAsign">
+			<result name="success">jsp/mantenimientoProfesores.jsp</result>
+			<result name="input">jsp/addEstProfesor.jsp</result>
+		</action>
+
+	</package>
 </struts>	 
