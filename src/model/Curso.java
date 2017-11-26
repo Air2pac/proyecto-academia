@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,9 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.opensymphony.xwork2.ActionSupport;
+
 @Entity
 @Table(name="pra_cursos")
-public class Curso {
+public class Curso  {
 
 	@Id
 	@Column(name="cur_id")
@@ -57,4 +60,12 @@ public class Curso {
 	public void setAsignaturas(List<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
+	
+	
+	
+
+	public void errorDesc(){
+	
+	}
+	
 }

@@ -84,14 +84,26 @@ public class ConexionCurso {
 	}
 	
 	public List<Curso> listarCursos(){
-		
-		Query query = session.createQuery("SELECT c FROM PraCursos c");
+		session =sessionFactory.openSession();
+		Query query = session.createQuery("SELECT c FROM Curso c");
 		List<Curso> listaCursos = query.list();
+		session.close();
 		return listaCursos;
 	}
 	
 	public String devolverNombre(int id){
-		Curso curso = (Curso) session.createQuery("SELECT c FROM PraCursos c WHERE c.curId="+id+"").uniqueResult();
+		session =sessionFactory.openSession();
+		Curso curso = (Curso) session.createQuery("SELECT c FROM Curso c WHERE c.cur_id="+id+"").uniqueResult();
+		session.close();
 		return curso.getCur_des();
+	}
+	
+	public Curso devolverCurso(int id){
+		session =sessionFactory.openSession();
+		Curso curso = (Curso) session.createQuery("SELECT c FROM Curso c WHERE c.cur_id="+id+"").uniqueResult();
+		session.close();
+		return curso;
+		
+		
 	}
 }

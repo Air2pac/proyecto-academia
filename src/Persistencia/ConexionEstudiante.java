@@ -1,13 +1,14 @@
 package Persistencia;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-import org.hibernate.service.ServiceRegistry;
+import java.util.List;
 
+import model.Asignatura;
 import model.Curso;
 import model.Estudiante;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 
 public class ConexionEstudiante {
@@ -59,4 +60,48 @@ public class ConexionEstudiante {
 		
 		return pasa;
 	}
+	
+	public List<Asignatura> listarAsingatura(){
+		session = sessionFactory.openSession();
+		Query query = session.createQuery("SELECT a.asi_des FROM Asignatura a");
+		List<Asignatura> listaAsignaturas = query.list();
+		session.close();
+		return listaAsignaturas;
+	}
+	public List<Estudiante> listarEstudiante(){
+		session = sessionFactory.openSession();
+		Query query = session.createQuery("SELECT e FROM Estudiante e");
+		List<Estudiante> listaEstudiantes = query.list();
+		session.close();
+		return listaEstudiantes;
+	}
+	
+	public Asignatura devolverAsignatura(String des){
+		session = sessionFactory.openSession();
+		Asignatura asignatura = (Asignatura) session.createQuery(
+				"SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
+				.uniqueResult();
+		session.close();
+		return asignatura;
+	}
+	
+	public boolean insertarEstuAsignatura(Estudiante estudiante){
+		boolean pasa=true;
+		session =sessionFactory.openSession(); 
+		session.beginTransaction(); 
+		System.out.println("--------" + estudiante.getEst_nombre());
+		try {
+		 session.saveOrUpdate(estudiante); 
+		 System.out.println("Se ha insertado");
+		 session.getTransaction().commit();
+		session.close();
+		}catch(Exception e) {
+			System.out.println("Error al modificar " + e);
+			pasa=false;
+			session.getTransaction().rollback();
+		}
+		
+		return pasa;
+	}
+	
 }

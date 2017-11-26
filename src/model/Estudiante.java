@@ -1,6 +1,8 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,8 +34,12 @@ public class Estudiante {
 	@Column(name="est_ape2")
 	private String est_ape2;
 	
-	private List<Asignatura> asignaturas;
+	@ManyToMany(cascade = {CascadeType.ALL}) 
+	@JoinTable(name="pra_asixest", joinColumns={@JoinColumn(name="est_id")}, inverseJoinColumns={@JoinColumn(name="asi_id")}) 
+	private Set<Asignatura> asignaturas = new HashSet<>();
 	
+	
+
 	public Estudiante() {
 	}
 
@@ -92,14 +98,13 @@ public class Estudiante {
 		this.est_ape2 = est_ape2;
 	}
 
-	public List<Asignatura> getAsignaturas() {
+	public Set<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
 
-	public void setAsignaturas(List<Asignatura> asignaturas) {
+	public void setAsignaturas(Set<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
-
 	
 	@Override
 	public String toString() {

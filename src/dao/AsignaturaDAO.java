@@ -69,7 +69,6 @@ public class AsignaturaDAO extends ActionSupport {
 		curso = asignatura.getCurso();
 		curso.setCur_id(id);
 		asignatura.setCurso(curso);
-		System.out.println(curso.getCur_id() + " // " + curso.getCur_des());
 		boolean pasa = conexion.insertarAsignatura(asignatura);
 		
 		if(pasa) {

@@ -29,12 +29,7 @@ public class Asignatura {
 	@Column(name="asi_des")
 	private String asi_des;
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas", cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE } )
-	/*@JoinTable(
-	        name = "pra_asixest", 
-	        joinColumns = { @JoinColumn(name = "asi_id") }, 
-	        inverseJoinColumns = { @JoinColumn(name = "asi_id") }
-	    )*/
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas" )
 	private List<Estudiante> estudiantes;
 	
 	public Asignatura() {

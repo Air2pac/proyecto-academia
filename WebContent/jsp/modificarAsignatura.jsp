@@ -15,8 +15,8 @@
 			<div class="col-11">
 				<s:form id="ModificarAsignatura">
 					<input style="display: none;" type="text" name="asignatura.asi_id"  value="<s:property value="asignatura.asi_id"/>"></input></br>
-					<input type="text" name="asignatura.asi_des"
-						label="Descripción asignatura">Descripción de la asignatura</input>
+					<input type="text" name="asignatura.asi_des" label="Descripción asignatura"
+					value="<s:property value="asignatura.asi_des"/>" > Descripción de la asignatura</input>
 					</br>
 					
 					<s:select list="listCursos" name="asignatura.curso.cur_des"  value="asignatura.curso.cur_des"/>

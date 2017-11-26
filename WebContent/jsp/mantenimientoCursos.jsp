@@ -33,7 +33,8 @@
 						<tr>
 							<!-- <td><input type="hidden" name="curso.cur_id" value="<s:property value="cur_id"/>">${cur_id}</td> -->
 							<td style="display: none;"><input type="radio"
-										name="curso.cur_id" value="${cur_id}">${cur_id}</td>
+										name="curso.cur_id" value="<s:property value="cur_id"/>">
+										<s:property value="cur_id"/></td>
 							<td><s:property value="cur_des"/></td>
 							<td>
 								<button title="modificar" class="btn btn-link modificarCur">

@@ -22,10 +22,11 @@ public class CursoDAO extends ActionSupport {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
+	
 
 	public String listadoCursos() {
 		// Obtiene un listado de los estudiantes
-		listadoCursos = (ArrayList) dao.Leer("Curso", "");
+		listadoCursos = conexion.listarCursos();
 		return SUCCESS;
 	}
 
@@ -38,12 +39,10 @@ public class CursoDAO extends ActionSupport {
 	}
 
 	public String borrarCurso() {
-		System.out.println("pasa");
-		System.out.println("--- " + curso.getCur_id());
 		conexion.eliminarCurso(curso);
 		// dao.Borrar(estudiante);
 		listadoCursos.clear();
-		listadoCursos = (ArrayList) dao.Leer("Curso", "");
+		listadoCursos = conexion.listarCursos();
 		return SUCCESS;
 
 	}
@@ -58,7 +57,7 @@ public class CursoDAO extends ActionSupport {
 
 		if (pasa) {
 			listadoCursos.clear();
-			listadoCursos = (ArrayList) dao.Leer("Curso", "");
+			listadoCursos = conexion.listarCursos();
 			return SUCCESS;
 		} else {
 			System.out.println("error");
@@ -67,10 +66,16 @@ public class CursoDAO extends ActionSupport {
 	}
 
 	public String abrirModificarCurso() {
+		if(curso.getCur_des()==null){
+			System.out.println("es nulo");
+		}else{
+			System.out.println("paeeeesa" + curso.getCur_des());
+		}
+		
 		listadoCursos.clear();
-		listadoCursos = (ArrayList) dao.Leer("Curso",
-				"where cur_id=" + curso.getCur_id());
+		listadoCursos.add(conexion.devolverCurso(curso.getCur_id()));
 		curso = listadoCursos.get(0);
+		System.out.println(curso.getCur_des());
 		return SUCCESS;
 	}
 
@@ -79,7 +84,7 @@ public class CursoDAO extends ActionSupport {
 
 		if (pasa) {
 			listadoCursos.clear();
-			listadoCursos = (ArrayList) dao.Leer("Curso", "");
+			listadoCursos = conexion.listarCursos();
 			return SUCCESS;
 		} else {
 			return INPUT;

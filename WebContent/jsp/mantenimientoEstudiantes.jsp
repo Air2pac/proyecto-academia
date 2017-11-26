@@ -28,6 +28,7 @@
 							<th>Nombre</th>
 							<th>1º Apellido</th>
 							<th>2º Apellido</th>
+							<th>Add Asignaturas</th>
 							<th>Modificar</th>
 							<th>Eliminar</th>
 						</thead>
@@ -40,6 +41,12 @@
 									<td><s:property value="est_nombre" /></td>
 									<td><s:property value="est_ape1" /></td>
 									<td><s:property value="est_ape2" /></td>
+									<td style="display: none;"><s:property value="asignaturas" /></td>
+									<td>
+										<button title="AddAsignaturas" class="btn btn-link addAsignat">
+											<i class="fa fa-plus-square-o fa-lg" aria-hidden="true"></i>
+										</button>
+									</td>
 									<td>
 										<button title="modificar" class="btn btn-link modificar">
 											<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
