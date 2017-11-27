@@ -1,6 +1,8 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +32,11 @@ public class Asignatura {
 	private String asi_des;
 	
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas" )
-	private List<Estudiante> estudiantes;
+	private Set<Estudiante> estudiantes = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas" )
+	private Set<Profesor> profesores = new HashSet<>();
+	
 	
 	public Asignatura() {
 		this.asi_id = 0;
@@ -69,16 +75,22 @@ public class Asignatura {
 		this.asi_des = asi_des;
 	}
 
-	public List<Estudiante> getEstudiantes() {
+	public Set<Estudiante> getEstudiantes() {
 		return estudiantes;
 	}
 
-	public void setEstudiantes(List<Estudiante> estudiantes) {
+	public void setEstudiantes(Set<Estudiante> estudiantes) {
 		this.estudiantes = estudiantes;
 	}
-	@Override
-	public String toString() {
-		return "Asignatura [asi_id=" + asi_id + ", curso=" + curso
-				+ ", asi_des=" + asi_des + ", estudiantes=" + estudiantes + "]";
+
+	public Set<Profesor> getProfesores() {
+		return profesores;
 	}
+
+	public void setProfesores(Set<Profesor> profesores) {
+		this.profesores = profesores;
+	}
+
+	
+	
 }

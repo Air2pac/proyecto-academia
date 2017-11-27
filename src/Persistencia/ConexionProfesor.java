@@ -79,10 +79,10 @@ public class ConexionProfesor {
 		return pasa;
 	}
 	
-	public List<Profesor> listarAsingatura(){
+	public List<Asignatura> listarAsingatura(){
 		session = sessionFactory.openSession();
 		Query query = session.createQuery("SELECT a.asi_des FROM Asignatura a");
-		List<Profesor> listaAsignaturas = query.list();
+		List<Asignatura> listaAsignaturas = query.list();
 		session.close();
 		return listaAsignaturas;
 	}
@@ -94,13 +94,6 @@ public class ConexionProfesor {
 		return listaProfesor;
 	}
 	
-	public Asignatura devolverAsignatura(String des){
-		session = sessionFactory.openSession();
-		Asignatura asignatura = (Asignatura) session.createQuery("SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
-				.uniqueResult();
-		session.close();
-		return asignatura;
-	}
 	
 	public Profesor devolverProfesor(int id){
 		session = sessionFactory.openSession();
@@ -110,13 +103,21 @@ public class ConexionProfesor {
 		return profesor;
 	}
 	
-	/*public boolean insertarEstuAsignatura(Profesor estudiante){
+	public Asignatura devolverAsignatura(String des){
+		session = sessionFactory.openSession();
+		Asignatura asignatura = (Asignatura) session.createQuery(
+				"SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
+				.uniqueResult();
+		session.close();
+		return asignatura;
+	}
+	
+	public boolean insertarProfAsignatura(Profesor profesor){
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
-		System.out.println("--------" + estudiante.getEst_nombre());
 		try {
-		 session.saveOrUpdate(estudiante); 
+		 session.saveOrUpdate(profesor); 
 		 System.out.println("Se ha insertado");
 		 session.getTransaction().commit();
 		session.close();
@@ -127,5 +128,5 @@ public class ConexionProfesor {
 		}
 		
 		return pasa;
-	}*/
+	}
 }

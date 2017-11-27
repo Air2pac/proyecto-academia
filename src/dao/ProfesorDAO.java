@@ -14,8 +14,12 @@ public class ProfesorDAO extends ActionSupport{
 	private Profesor profesor; 
 	private List<Profesor> listadoProfesores = new ArrayList<>();
 	private ConexionProfesor conexion = new ConexionProfesor();
+	DaoGenerico dao = new DaoGenerico();
 	private List<Asignatura> listAsignatura = new ArrayList<Asignatura>();
+	private String arrayAsignaturas [];
 	private Asignatura asignatura;
+	private String StrAsign;
+	
 	public Profesor getProfesor() {
 		return profesor;
 	}
@@ -56,6 +60,18 @@ public class ProfesorDAO extends ActionSupport{
 		return SUCCESS;
 	}
 	
+	public String[] getArrayAsignaturas() {
+		return arrayAsignaturas;
+	}
+	public void setArrayAsignaturas(String arrayAsignaturas[]) {
+		this.arrayAsignaturas = arrayAsignaturas;
+	}
+	public String getStrAsign() {
+		return StrAsign;
+	}
+	public void setStrAsign(String strAsign) {
+		StrAsign = strAsign;
+	}
 	public String insertarProfesor(){
 		
 		boolean pasa = conexion.insertarProfesor(profesor);
@@ -72,7 +88,6 @@ public class ProfesorDAO extends ActionSupport{
 	
 	public String borrarProfesor(){
 		conexion.eliminarProfesor(profesor);
-		// dao.Borrar(estudiante);
 		listadoProfesores.clear();
 		listadoProfesores = conexion.listarProfesores();
 		return SUCCESS;
@@ -96,4 +111,37 @@ public class ProfesorDAO extends ActionSupport{
 			return INPUT;
 		}
 	}
+	public String abrirAddProAsign(){
+		
+		
+		setListAsignatura(conexion.listarAsingatura());
+	
+		listadoProfesores.clear();
+		listadoProfesores = (ArrayList)dao.Leer("Profesor", "where pro_id="+profesor.getPro_id());
+		profesor = listadoProfesores.get(0);
+		return SUCCESS;
+	}
+	
+	public String addProAsign(){
+		List<Asignatura> listAsig = new ArrayList<>();
+		for (String a : arrayAsignaturas) {
+			listAsig.add(conexion.devolverAsignatura(a));
+		}
+		for (Asignatura a : listAsig) {
+			profesor.getAsignaturas().add(a);
+		}
+		for (Asignatura a : listAsig) {
+			a.getProfesores().add(profesor);
+		}
+		
+		boolean pasa = conexion.insertarProfAsignatura(profesor);
+		if (pasa) {
+			listadoProfesores.clear();
+			listadoProfesores = conexion.listarProfesores();
+			return SUCCESS;
+		} else {
+			return INPUT;
+		}
+	}
+	
 }

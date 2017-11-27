@@ -130,7 +130,7 @@
 		</action>
 		<action name="AddProAsign" class="dao.ProfesorDAO" method="addProAsign">
 			<result name="success">jsp/mantenimientoProfesores.jsp</result>
-			<result name="input">jsp/addEstProfesor.jsp</result>
+			<result name="input">jsp/addProAsignatura.jsp</result>
 		</action>
 
 	</package>
