@@ -84,4 +84,26 @@ public class CursoDAO extends ActionSupport {
 			return INPUT;
 		}
 	}
+	
+	public void validateInsertarCurso(){
+		if(curso.getCur_des() == null || curso.getCur_des().trim().equals("")){
+			abrirAddCurso();
+			addFieldError("cur_des", "Curso vacío");
+		}else 
+		if(conexion.existeCurso(curso.getCur_des())){
+			abrirAddCurso();
+			addFieldError("cur_des", "Curso ya existente");
+		}
+	}
+	
+	public void validateModificarCurso(){
+		if(curso.getCur_des() == null || curso.getCur_des().trim().equals("")){
+			abrirAddCurso();
+			addFieldError("cur_des", "Curso vacío");
+		}else 
+		if(conexion.existeCurso(curso.getCur_des())){
+			abrirAddCurso();
+			addFieldError("cur_des", "Curso existente");
+		}
+	}
 }

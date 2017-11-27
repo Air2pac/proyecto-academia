@@ -18,10 +18,10 @@
 					<input type="text" name="asignatura.asi_des" label="Descripción asignatura"
 					value="<s:property value="asignatura.asi_des"/>" > Descripción de la asignatura</input>
 					</br>
-					
+					<s:fielderror/>
 					<s:select list="listCursos" name="asignatura.curso.cur_des"  value="asignatura.curso.cur_des"/>
-					<button title="confirmar" class="btn btn-primary confirma">
-						CONFIRMAR</button>
+					<s:fielderror/>
+					<button title="confirmar" class="btn btn-primary confirma">CONFIRMAR</button>
 				</s:form>
 			</div>
 		</div>

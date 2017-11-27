@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
+import model.Asignatura;
 import model.Curso;
 
 
@@ -105,5 +106,22 @@ public class ConexionCurso {
 		return curso;
 		
 		
+	}
+	
+	
+	public boolean existeCurso(String des){
+		boolean existe = false;
+		
+		session = sessionFactory.openSession();
+		
+		Query query = session.createQuery("SELECT c FROM Curso c where c.cur_des='"+des+"'");
+		List<Curso> listaCursos = query.list();
+		if(listaCursos.size()>0){
+			existe=true;
+		}
+		session.close();
+		
+
+		return existe;
 	}
 }

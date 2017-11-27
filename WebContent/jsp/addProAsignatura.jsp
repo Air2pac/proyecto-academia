@@ -21,6 +21,7 @@
 					<input readonly="readonly" type="text" name="profesor.pro_ape2" label="Apellido2 Profesor" value="<s:property value="profesor.pro_ape2"/>" >Apellido2</input></br>
 					<s:checkboxlist label="Elige las asignaturas del profesor" list="listAsignatura" 
 							name="arrayAsignaturas" />
+					<s:fielderror/>
 					<button title="confirmar" class="btn btn-primary confirma"> CONFIRMAR</button>
 				</s:form>
 			</div>

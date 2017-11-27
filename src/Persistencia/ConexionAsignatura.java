@@ -125,4 +125,20 @@ public class ConexionAsignatura {
 
 		return curso.getCur_id();
 	}
+	
+	public boolean existeAsignatura(String des){
+		boolean existe = false;
+		
+		session = sessionFactory.openSession();
+		
+		Query query = session.createQuery("SELECT a FROM Asignatura a where a.asi_des='"+des+"'");
+		List<Asignatura> listaAsignaturas = query.list();
+		if(listaAsignaturas.size()>0){
+			existe=true;
+		}
+		session.close();
+		
+
+		return existe;
+	}
 }

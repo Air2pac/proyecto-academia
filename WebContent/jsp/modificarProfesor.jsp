@@ -17,10 +17,10 @@
 					<input style="display: none;" type="text" name="profesor.pro_id"  value="<s:property value="profesor.pro_id"/>"></input></br>
 					<input type="text" name="profesor.pro_nombre" label="Nombre del profesor"
 					value="<s:property value="profesor.pro_nombre"/>" >Nombre del profesor</input></br>
-					<s:fielderror/>
+					
 					<input type="text" name="profesor.pro_ape1" label="Primer Apellido" 
 					value="<s:property value="profesor.pro_ape1"/>">Primer Apellido</input></br>
-					<s:fielderror/>
+					
 					<input type="text" name="profesor.pro_ape2" label="Segundo Apellido" 
 					value="<s:property value="profesor.pro_ape2"/>">Segundo Apellido</input></br>
 					<s:fielderror/>

@@ -17,6 +17,7 @@
 				<s:form id="ModificarCurso">
 					<input style="display: none;" type="text" name="curso.cur_id"  value="<s:property value="curso.cur_id"/>"></input></br>
 					<input type="text" name="curso.cur_des" label="Descripción Curso" value="<s:property value="curso.cur_des"/>" >Descripción Curso</input></br>
+					<s:fielderror/>
 					<button title="confirmar" class="btn btn-primary confirma"> CONFIRMAR</button>
 				</s:form>
 			</div>

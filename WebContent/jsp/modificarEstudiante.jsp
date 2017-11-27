@@ -17,9 +17,13 @@
 				<s:form id="ModificarEstudiante">
 					<input style="display: none;" type="text" name="estudiante.est_id"  value="<s:property value="estudiante.est_id"/>"></input></br>
 					<input type="text" name="estudiante.est_nombre" label="Nombre estudiante" value="<s:property value="estudiante.est_nombre"/>" >Nombre</input></br>
-					<input type="text" name="estudiante.est_dni" label="Dni estudiante" value="<s:property value="estudiante.est_dni"/>" >Dni</input></br>
+					
+					<input type="text" readonly="readonly" name="estudiante.est_dni" label="Dni estudiante" value="<s:property value="estudiante.est_dni"/>" >Dni</input></br>
+					
 					<input type="text" name="estudiante.est_ape1" label="Apellido1 estudiante" value="<s:property value="estudiante.est_ape1"/>" >Apellido1</input></br>
+					
 					<input type="text" name="estudiante.est_ape2" label="Apellido2 estudiante" value="<s:property value="estudiante.est_ape2"/>" >Apellido2</input></br>
+					<s:fielderror/>
 					<button title="confirmar" class="btn btn-primary confirma"> CONFIRMAR</button>
 				</s:form>
 			</div>

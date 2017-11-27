@@ -102,5 +102,22 @@ public class ConexionEstudiante {
 		
 		return pasa;
 	}
+
+	public boolean existeDni(String est_dni) {
+		
+		boolean existe = false;
+		
+		session = sessionFactory.openSession();
+		
+		Query query = session.createQuery("SELECT e FROM Estudiante e where e.est_dni='"+est_dni+"'");
+		List<Asignatura> listaAsignaturas = query.list();
+		if(listaAsignaturas.size()>0){
+			existe=true;
+		}
+		session.close();
+		
+
+		return existe;
+	}
 	
 }
