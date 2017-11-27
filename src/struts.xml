@@ -105,8 +105,15 @@
 
 		
 		
-		<action name="ListadoProfesores" class="dao.ProfesorDAO" method="listadoPofesores">
-			<result name="success">jsp/mantenimientoPofesores.jsp</result>
+		<action name="ListadoProfesores" class="dao.ProfesorDAO" method="listadoProfesores">
+			<result name="success">jsp/mantenimientoProfesores.jsp</result>
+		</action>
+		<action name="AbrirInsertarProfesor" class="dao.ProfesorDAO" method="abrirInsertarProfesor">
+			<result name="success">jsp/addProfesor.jsp</result>
+		</action>
+		<action name="InsertarProfesor" class="dao.ProfesorDAO" method="insertarProfesor">
+			<result name="success">jsp/mantenimientoProfesores.jsp</result>
+			<result name="input">jsp/addProfesor.jsp</result>
 		</action>
 		<action name="BorrarProfesor" class="dao.ProfesorDAO" method="borrarProfesor">
 			<result name="success">jsp/mantenimientoProfesores.jsp</result>
@@ -115,8 +122,8 @@
 			<result name="success">jsp/modificarProfesor.jsp</result>
 		</action>
 		<action name="ModificarProfesor" class="dao.ProfesorDAO" method="modificarProfesor">
-			<result name="success">jsp/mantenimientoAsignaturas.jsp</result>
-			<result name="input">jsp/modificarAsignatura.jsp</result>
+			<result name="success">jsp/mantenimientoProfesores.jsp</result>
+			<result name="input">jsp/modificarProfesor.jsp</result>
 		</action>
 		<action name="AbrirAddProAsign" class="dao.ProfesorDAO" method="abrirAddProAsign">
 			<result name="success">jsp/addProAsignatura.jsp</result>

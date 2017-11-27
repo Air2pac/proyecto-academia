@@ -2,6 +2,7 @@ package Persistencia;
 
 import java.util.List;
 
+import model.Asignatura;
 import model.Estudiante;
 import model.Profesor;
 
@@ -28,11 +29,12 @@ public class ConexionProfesor {
 		 session.delete(profesor); 
 		 System.out.println("Se ha eliminado");
 		 session.getTransaction().commit();
-		session.close();
 		}catch(Exception e) {
 			System.out.println("Error al modificar " + e);
 			pasa=false;
 			session.getTransaction().rollback();
+		}finally{
+			session.close();
 		}
 		
 		return pasa;
@@ -45,11 +47,13 @@ public class ConexionProfesor {
 		 session.update(profesor); 
 		 System.out.println("Se ha modificado");
 		 session.getTransaction().commit();
-		session.close();
+		
 		}catch(Exception e) {
 			System.out.println("Error al modificar " + e);
 			pasa=false;
 			session.getTransaction().rollback();
+		}finally{
+			session.close();
 		}
 		
 		return pasa;
@@ -64,11 +68,12 @@ public class ConexionProfesor {
 		 session.save(profesor); 
 		 System.out.println("Se ha insertado");
 		 session.getTransaction().commit();
-		session.close();
 		}catch(Exception e) {
 			System.out.println("Error al modificar " + e);
 			pasa=false;
 			session.getTransaction().rollback();
+		}finally{
+			session.close();
 		}
 		
 		return pasa;
@@ -89,12 +94,20 @@ public class ConexionProfesor {
 		return listaProfesor;
 	}
 	
-	public Profesor devolverAsignatura(String des){
+	public Asignatura devolverAsignatura(String des){
 		session = sessionFactory.openSession();
-		Profesor asignatura = (Profesor) session.createQuery("SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
+		Asignatura asignatura = (Asignatura) session.createQuery("SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
 				.uniqueResult();
 		session.close();
 		return asignatura;
+	}
+	
+	public Profesor devolverProfesor(int id){
+		session = sessionFactory.openSession();
+		Profesor profesor = (Profesor) session.createQuery("SELECT p FROM Profesor p WHERE p.pro_id=" + id + "")
+				.uniqueResult();
+		session.close();
+		return profesor;
 	}
 	
 	/*public boolean insertarEstuAsignatura(Profesor estudiante){

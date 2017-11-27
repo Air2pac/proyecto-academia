@@ -54,7 +54,7 @@ function add(event){
 	//alert(i);
 	$.ajax({
 		type: 'POST',
-        url:  "AbrirAddProfesor",
+        url:  "AbrirInsertarProfesor",
         //data : dataForm,
         success:  function (response) {
 //        	$(i).parentsUntil('tbody').last().css('display','none');

@@ -66,12 +66,6 @@ public class CursoDAO extends ActionSupport {
 	}
 
 	public String abrirModificarCurso() {
-		if(curso.getCur_des()==null){
-			System.out.println("es nulo");
-		}else{
-			System.out.println("paeeeesa" + curso.getCur_des());
-		}
-		
 		listadoCursos.clear();
 		listadoCursos.add(conexion.devolverCurso(curso.getCur_id()));
 		curso = listadoCursos.get(0);

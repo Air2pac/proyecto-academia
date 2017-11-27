@@ -7,10 +7,13 @@ $(document).ready(function(){
 
 function action(id){
 	$.ajax({
-        url:   $('#'+id).attr('id'),
+        url: $('#'+id).attr('id'),
         success:  function (response) {
            $("#mainMantenimiento").html(response);
         }
+		, error: function(respone){
+			alert("error" + response);
+		}
 	});
 }
 /*
