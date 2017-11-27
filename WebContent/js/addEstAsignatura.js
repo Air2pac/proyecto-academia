@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$(".confirma").click(addAsign);
+	$(".confirmarEA").click(addAsign);
 });
 
 function addAsign(event){
@@ -17,7 +17,23 @@ function addAsign(event){
         	$("#mainMantenimiento").html(response);
         },
         error: function(response){
-        	alert("ERROR ocurrido");
+        	abrirMantenimiento();
         }
 	});
+	
+	
+	function abrirMantenimiento() {
+		$.ajax({
+			type: 'POST',
+	        url:  "ListadoEstudiantes",
+	        //data : dataForm,
+	        success:  function (response) {
+//	        	$(i).parentsUntil('tbody').last().css('display','none');
+	        	$("#mainMantenimiento").html(response);
+	        },
+	        error: function(response){
+	        	alert("ERROR ocurrido");
+	        }
+		});
+	}
 }

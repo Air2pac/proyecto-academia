@@ -17,6 +17,7 @@ public class EstudianteDAO extends ActionSupport {
 	DaoGenerico dao = new DaoGenerico();
 	private ConexionEstudiante conexion = new ConexionEstudiante();
 	private List<Asignatura> listAsignatura = new ArrayList<Asignatura>();
+	private String arrayAsignaturas [];
 	private Asignatura asignatura;
 	
 	public String listadoEstudiantes() {
@@ -55,6 +56,13 @@ public class EstudianteDAO extends ActionSupport {
 	public void setListAsignatura(List<Asignatura> listAsignatura) {
 		this.listAsignatura = listAsignatura;
 	}
+	public String[] getArrayAsignaturas() {
+		return arrayAsignaturas;
+	}
+	public void setArrayAsignaturas(String arrayAsignaturas[]) {
+		this.arrayAsignaturas = arrayAsignaturas;
+	}
+
 	
 
 	public void setEstudiante(Estudiante estudiante) {
@@ -116,28 +124,29 @@ public class EstudianteDAO extends ActionSupport {
 	}
 	
 	public String addEstAsign(){
-		System.out.println("pasaa");
-		
-		System.out.println(asignatura.getAsi_des());
 
-		asignatura = conexion.devolverAsignatura(asignatura.getAsi_des());
-		estudiante.getAsignaturas().add(asignatura);
-		asignatura.getEstudiantes().add(estudiante);
-		boolean pasa = conexion.insertarEstuAsignatura(estudiante);
+		List<Asignatura> listAsig = new ArrayList<>();
+		for (String a : arrayAsignaturas) {
+			listAsig.add(conexion.devolverAsignatura(a));
+		}
+		for (Asignatura a : listAsig) {
+			estudiante.getAsignaturas().add(a);
+		}
+		for (Asignatura a : listAsig) {
+			a.getEstudiantes().add(estudiante);
+		}
 		
-		if(pasa) {
+		boolean pasa = conexion.insertarEstuAsignatura(estudiante);
+		if (pasa) {
 			listadoEstudiantes.clear();
 			listadoEstudiantes = conexion.listarEstudiante();
 			return SUCCESS;
-		}else {
-			System.out.println("error");
+		} else {
 			return INPUT;
 		}
 		
-		
 	}
 
-	
 
 
 

@@ -18,7 +18,7 @@ public class ProfesorDAO extends ActionSupport{
 	private List<Asignatura> listAsignatura = new ArrayList<Asignatura>();
 	private String arrayAsignaturas [];
 	private Asignatura asignatura;
-	private String StrAsign;
+	
 	
 	public Profesor getProfesor() {
 		return profesor;
@@ -66,12 +66,7 @@ public class ProfesorDAO extends ActionSupport{
 	public void setArrayAsignaturas(String arrayAsignaturas[]) {
 		this.arrayAsignaturas = arrayAsignaturas;
 	}
-	public String getStrAsign() {
-		return StrAsign;
-	}
-	public void setStrAsign(String strAsign) {
-		StrAsign = strAsign;
-	}
+	
 	public String insertarProfesor(){
 		
 		boolean pasa = conexion.insertarProfesor(profesor);
