@@ -135,5 +135,17 @@ public class ConexionEstudiante {
 
 		return listaEstudiantes;
 	}
+	public List<Estudiante> consultaEstCur(String ape1){
+		
+		session = sessionFactory.openSession();
+		
+		Query query = session.createQuery("SELECT e FROM Estudiante e where e.est_ape1 like '" + ape1 + "%'");
+		List<Estudiante> listaEstudiantes = query.list();
+		session.close();
+		
+
+		return listaEstudiantes;
+	}
+	
 	
 }

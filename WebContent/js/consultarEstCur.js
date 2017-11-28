@@ -1,16 +1,16 @@
 $(document).ready(function(){
-	$(".consultarpro").click(consultarpro);
+	$(".consultarestcur").click(consultarestcur);
 });
 
-function consultarpro(event){
+function consultarestcur(event){
 	event.preventDefault();
-	var dataForm = $('#formConsultaProfesor').serialize();
+	var dataForm = $('#formConsultaEstCur').serialize();
 	$.ajax({
 		type: 'POST',
-        url:  "ConsultarProf",
+        url:  "ConsCurEst",
         data : dataForm,
         success:  function (response) {
-        	$("#cuerpoConsPro").html(response);
+        	$("#cuerpoConsEst").html(response);
         },
         error: function(response){
         	$("#mainMantenimiento").html(response);

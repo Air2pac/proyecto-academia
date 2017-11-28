@@ -1,7 +1,9 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import Persistencia.ConexionEstudiante;
 import model.Asignatura;
+import model.Curso;
 import model.Estudiante;
 
 public class EstudianteDAO extends ActionSupport {
@@ -109,7 +112,7 @@ public class EstudianteDAO extends ActionSupport {
 	}
 
 	public String insertarEstudiante() {
-		
+
 		estudiante.setEst_dni(estudiante.getEst_dni().trim());
 		boolean pasa = conexion.insertarEstudiante(estudiante);
 
@@ -126,7 +129,8 @@ public class EstudianteDAO extends ActionSupport {
 	public String abrirAddEstAsign() {
 		setListAsignatura(conexion.listarAsingatura());
 		listadoEstudiantes.clear();
-		listadoEstudiantes = (ArrayList) dao.Leer("Estudiante", "where est_id="+ estudiante.getEst_id());
+		listadoEstudiantes = (ArrayList) dao.Leer("Estudiante", "where est_id="
+				+ estudiante.getEst_id());
 		estudiante = listadoEstudiantes.get(0);
 		return SUCCESS;
 	}
@@ -137,9 +141,10 @@ public class EstudianteDAO extends ActionSupport {
 		if (arrayAsignaturas != null || arrayAsignaturas.length > 0) {
 			for (String a : arrayAsignaturas) {
 				String parts[] = a.split(",");
-				listAsig.add(conexion.devolverAsignatura(parts[0].trim(),parts[1].trim()));
+				listAsig.add(conexion.devolverAsignatura(parts[0].trim(),
+						parts[1].trim()));
 			}
-		
+
 			for (Asignatura a : listAsig) {
 				estudiante.getAsignaturas().add(a);
 			}
@@ -147,7 +152,7 @@ public class EstudianteDAO extends ActionSupport {
 				a.getEstudiantes().add(estudiante);
 			}
 
-		}else{
+		} else {
 			dao.Borrar(estudiante);
 			System.out.println("pasa");
 		}
@@ -161,93 +166,127 @@ public class EstudianteDAO extends ActionSupport {
 		}
 
 	}
-	
-	public void validateInsertarEstudiante(){
-		if(estudiante.getEst_nombre() == null || estudiante.getEst_nombre().trim().equals("")){
-		
+
+	public void validateInsertarEstudiante() {
+		if (estudiante.getEst_nombre() == null
+				|| estudiante.getEst_nombre().trim().equals("")) {
+
 			addFieldError("est_nombre", "Nombre vacío");
 		}
-		if(estudiante.getEst_dni() == null || estudiante.getEst_dni().trim().equals("")){
-		
+		if (estudiante.getEst_dni() == null
+				|| estudiante.getEst_dni().trim().equals("")) {
+
 			addFieldError("est_dni", "DNI vacío");
 		}
-		if(estudiante.getEst_ape1() == null || estudiante.getEst_ape1().trim().equals("")){
-		
+		if (estudiante.getEst_ape1() == null
+				|| estudiante.getEst_ape1().trim().equals("")) {
+
 			addFieldError("est_ape1", "Primer Apellido vacío");
 		}
-		if(estudiante.getEst_ape2() == null || estudiante.getEst_ape2().trim().equals("")){
-	
+		if (estudiante.getEst_ape2() == null
+				|| estudiante.getEst_ape2().trim().equals("")) {
+
 			addFieldError("est_ape2", "Segundo Apellido vacío");
 		}
-		if(!comprobarDni(estudiante.getEst_dni())){
+		if (!comprobarDni(estudiante.getEst_dni())) {
 			addFieldError("cur_dni", "DNI ya incorrecto");
-		}	
-		if(conexion.existeDni(estudiante.getEst_dni().trim())){
-			
+		}
+		if (conexion.existeDni(estudiante.getEst_dni().trim())) {
+
 			addFieldError("cur_dni", "DNI ya existente");
-		} 
+		}
 	}
-	
-	public void validateModificarEstudiante(){
-		
-		if(estudiante.getEst_nombre() == null || estudiante.getEst_nombre().trim().equals("")){
-			
+
+	public void validateModificarEstudiante() {
+
+		if (estudiante.getEst_nombre() == null
+				|| estudiante.getEst_nombre().trim().equals("")) {
+
 			addFieldError("est_nombre", "Nombre vacío");
 		}
-		if(estudiante.getEst_dni() == null || estudiante.getEst_dni().trim().equals("")){
-		
+		if (estudiante.getEst_dni() == null
+				|| estudiante.getEst_dni().trim().equals("")) {
+
 			addFieldError("est_dni", "DNI vacío");
 		}
-		if(estudiante.getEst_ape1() == null || estudiante.getEst_ape1().trim().equals("")){
-		
+		if (estudiante.getEst_ape1() == null
+				|| estudiante.getEst_ape1().trim().equals("")) {
+
 			addFieldError("est_ape1", "Primer Apellido vacío");
 		}
-		if(estudiante.getEst_ape2() == null || estudiante.getEst_ape2().trim().equals("")){
-	
+		if (estudiante.getEst_ape2() == null
+				|| estudiante.getEst_ape2().trim().equals("")) {
+
 			addFieldError("est_ape2", "Segundo Apellido vacío");
 		}
-	
+
 	}
-	
-	
-	private static boolean comprobarDni(String nif){
-		 
-		   
-		 //si es NIE, eliminar la x,y,z inicial para tratarlo como nif
-		   if (nif.toUpperCase().startsWith("X")||nif.toUpperCase().startsWith("Y")||nif.toUpperCase().startsWith("Z"))
-		nif = nif.substring(1);
-		 
-		Pattern nifPattern = Pattern.compile("(\\d{1,8})([TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke])");
+
+	private static boolean comprobarDni(String nif) {
+
+		// si es NIE, eliminar la x,y,z inicial para tratarlo como nif
+		if (nif.toUpperCase().startsWith("X")
+				|| nif.toUpperCase().startsWith("Y")
+				|| nif.toUpperCase().startsWith("Z"))
+			nif = nif.substring(1);
+
+		Pattern nifPattern = Pattern
+				.compile("(\\d{1,8})([TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke])");
 		Matcher m = nifPattern.matcher(nif);
-		if(m.matches()){
-		String letra = m.group(2);
-		//Extraer letra del NIF
-		String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-		int dni = Integer.parseInt(m.group(1));
-		dni = dni % 23;
-		String reference = letras.substring(dni,dni+1);
-		 
-		if (reference.equalsIgnoreCase(letra)){
-		//_log.debug("son iguales. Es NIF. "+letra+" "+reference);
-			return true;
-		}else{
-		//_log.debug("NO son iguales. NO es NIF. "+letra+" "+reference);
+		if (m.matches()) {
+			String letra = m.group(2);
+			// Extraer letra del NIF
+			String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+			int dni = Integer.parseInt(m.group(1));
+			dni = dni % 23;
+			String reference = letras.substring(dni, dni + 1);
+
+			if (reference.equalsIgnoreCase(letra)) {
+				// _log.debug("son iguales. Es NIF. "+letra+" "+reference);
+				return true;
+			} else {
+				// _log.debug("NO son iguales. NO es NIF. "+letra+" "+reference);
+				return false;
+			}
+		} else
 			return false;
-		}
-		}else
-			return false;
-		}
-	
-	//Consultas
+	}
+
+	// Consultas
 	public String consultaEstAsig() {
 		return SUCCESS;
 	}
-	
-	public String consEstAsig(){
-	
-		setListadoEstudiantes(conexion.consultaEstAsig(estudiante.getEst_ape1()));
-		
+
+	public String consEstAsig() {
+
+		setListadoEstudiantes(conexion
+				.consultaEstAsig(estudiante.getEst_ape1()));
+
+		return SUCCESS;
+	}
+
+	public String consultarEstCur() {
+		return SUCCESS;
+	}
+
+	public String consCurEst() {
+		setListadoEstudiantes(conexion.consultaEstCur(estudiante.getEst_ape1()));
+		if (listadoEstudiantes.size() != 0) {
+			for (Estudiante e : listadoEstudiantes) {
+				Set<Curso> listaCursos = new HashSet<Curso>();
+				for (Asignatura a : e.getAsignaturas()) {
+					listaCursos.add(a.getCurso());
+				}
+				List<Curso> listCursos = new ArrayList<Curso>();
+				for (Curso c : listaCursos) {
+					listCursos.add(c);
+				}
+				e.setListaCursos(listCursos);
+			}
+		}
+
 		
 		return SUCCESS;
+	
 	}
 }

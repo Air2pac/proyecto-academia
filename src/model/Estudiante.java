@@ -1,5 +1,6 @@
 package model;
 
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.transaction.Transactional;
 
 import org.hibernate.annotations.Proxy;
@@ -40,8 +42,8 @@ public class Estudiante {
 	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER) 
 	@JoinTable(name="pra_asixest", joinColumns={@JoinColumn(name="est_id")}, inverseJoinColumns={@JoinColumn(name="asi_id")}) 
 	private Set<Asignatura> asignaturas = new HashSet<>();
-	
-	
+	@Transient
+	private List<Curso> listaCursos;
 
 	public Estudiante() {
 	}
@@ -107,6 +109,14 @@ public class Estudiante {
 
 	public void setAsignaturas(Set<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
+	}
+
+	public List<Curso> getListaCursos() {
+		return listaCursos;
+	}
+
+	public void setListaCursos(List<Curso> listaCursos) {
+		this.listaCursos = listaCursos;
 	}
 	
 }

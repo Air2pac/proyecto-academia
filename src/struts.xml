@@ -137,19 +137,16 @@
 		</action>
 		
 		
-		<action name="ConsultarProfAsig" class="dao.ProfesorDAO" method="consultarProfAsig">
-	 		<result name="success">jsp/consultarProfAsig.jsp</result>
-	 	</action>
+
 	 	<action name="ConsultaCurAsig" class="dao.AsignaturaDAO" method="consultaCurAsig">
 	 		<result name="success">jsp/consultarCurAsig.jsp</result>
 	 	</action>
-	 	<action name="ConsultarCurEst" class="dao.CursoDAO" method="consultarCurEst">
-	 		<result name="success">jsp/consultarCurEst.jsp</result>
-	 	</action>
+	 
+		 
 	 	
 	 	<action name="ConsAsigCur" class="dao.AsignaturaDAO" method="consAsigCur">
 			<result name="success">jsp/consultarCurAsig.jsp</result>
-		</action>
+		</action>	
 	 	<action name="ConsultaEstAsig" class="dao.EstudianteDAO" method="consultaEstAsig">
 	 		<result name="success">jsp/consultarEstAsig.jsp</result>
 	 	</action>
@@ -158,6 +155,22 @@
 			<result name="success">jsp/consultarEstAsig.jsp</result>
 		</action>
 
+
+ 		<action name="ConsultarProfAsig" class="dao.ProfesorDAO" method="consultarProfAsig">
+	 		<result name="success">jsp/consultarProfAsig.jsp</result>
+	 	</action>
+	 
+		<action name="ConsProfAsig" class="dao.ProfesorDAO" method="consEstAsig">
+			<result name="success">jsp/consultarProfAsig.jsp</result>
+		</action>
+
+		 <action name="ConsultarEstCur" class="dao.EstudianteDAO" method="consultarEstCur">
+	 		<result name="success">jsp/consultarEstCur.jsp</result>
+	 	</action> 
+		 <action name="ConsCurEst" class="dao.EstudianteDAO" method="consCurEst">
+	 		<result name="success">jsp/consultarEstCur.jsp</result>
+	 	</action>
+		
 		
 		
 	</package>

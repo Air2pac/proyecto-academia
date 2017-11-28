@@ -32,7 +32,7 @@ public class Profesor {
 	@Column(name="pro_ape2")
 	private String pro_ape2;
 	
-	@ManyToMany(cascade = {CascadeType.ALL}) 
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER) 
 	@JoinTable(name="pra_asixpro", joinColumns={@JoinColumn(name="pro_id")}, inverseJoinColumns={@JoinColumn(name="asi_id")}) 
 	private Set<Asignatura> asignaturas = new HashSet<>();
 	

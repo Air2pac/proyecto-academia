@@ -14,119 +14,131 @@ import org.hibernate.query.Query;
 public class ConexionProfesor {
 	private static SessionFactory sessionFactory;
 	private static Session session;
-	
-	public ConexionProfesor(){
-		Configuration configuration = new Configuration(); 
+
+	public ConexionProfesor() {
+		Configuration configuration = new Configuration();
 		configuration.configure();
 		sessionFactory = configuration.buildSessionFactory();
-		//session =sessionFactory.openSession(); 
+		// session =sessionFactory.openSession();
 	}
-	public boolean eliminarProfesor(Profesor profesor){
-		boolean pasa=true;
-		session =sessionFactory.openSession(); 
-		session.beginTransaction(); 
-		try {
-		 session.delete(profesor); 
-		 System.out.println("Se ha eliminado");
-		 session.getTransaction().commit();
-		}catch(Exception e) {
-			System.out.println("Error al modificar " + e);
-			pasa=false;
-			session.getTransaction().rollback();
-		}finally{
-			session.close();
-		}
-		
-		return pasa;
-	}
-	public boolean modificarProfesor(Profesor profesor){
-		boolean pasa=true;
-		session =sessionFactory.openSession(); 
-		session.beginTransaction(); 
-		try {
-		 session.update(profesor); 
-		 System.out.println("Se ha modificado");
-		 session.getTransaction().commit();
-		
-		}catch(Exception e) {
-			System.out.println("Error al modificar " + e);
-			pasa=false;
-			session.getTransaction().rollback();
-		}finally{
-			session.close();
-		}
-		
-		return pasa;
-	}
-	
-	
-	public boolean insertarProfesor(Profesor profesor){
-		boolean pasa=true;
-		session =sessionFactory.openSession(); 
-		session.beginTransaction(); 
-		try {
-		 session.save(profesor); 
-		 System.out.println("Se ha insertado");
-		 session.getTransaction().commit();
-		}catch(Exception e) {
-			System.out.println("Error al modificar " + e);
-			pasa=false;
-			session.getTransaction().rollback();
-		}finally{
-			session.close();
-		}
-		
-		return pasa;
-	}
-	
-	public List<Asignatura> listarAsingatura(){
+
+	public boolean eliminarProfesor(Profesor profesor) {
+		boolean pasa = true;
 		session = sessionFactory.openSession();
-		Query query = session.createQuery("SELECT a.asi_des FROM Asignatura a");
+		session.beginTransaction();
+		try {
+			session.delete(profesor);
+			System.out.println("Se ha eliminado");
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error al modificar " + e);
+			pasa = false;
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+
+		return pasa;
+	}
+
+	public boolean modificarProfesor(Profesor profesor) {
+		boolean pasa = true;
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		try {
+			session.update(profesor);
+			System.out.println("Se ha modificado");
+			session.getTransaction().commit();
+
+		} catch (Exception e) {
+			System.out.println("Error al modificar " + e);
+			pasa = false;
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+
+		return pasa;
+	}
+
+	public boolean insertarProfesor(Profesor profesor) {
+		boolean pasa = true;
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		try {
+			session.save(profesor);
+			System.out.println("Se ha insertado");
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error al modificar " + e);
+			pasa = false;
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+
+		return pasa;
+	}
+
+	public List<Asignatura> listarAsingatura() {
+		session = sessionFactory.openSession();
+		Query query = session.createQuery("SELECT a.asi_des , a.curso.cur_des FROM Asignatura a");
 		List<Asignatura> listaAsignaturas = query.list();
 		session.close();
 		return listaAsignaturas;
 	}
-	public List<Profesor> listarProfesores(){
+
+	public List<Profesor> listarProfesores() {
 		session = sessionFactory.openSession();
 		Query query = session.createQuery("SELECT p FROM Profesor p");
 		List<Profesor> listaProfesor = query.list();
 		session.close();
 		return listaProfesor;
 	}
-	
-	
-	public Profesor devolverProfesor(int id){
+
+	public Profesor devolverProfesor(int id) {
 		session = sessionFactory.openSession();
-		Profesor profesor = (Profesor) session.createQuery("SELECT p FROM Profesor p WHERE p.pro_id=" + id + "")
+		Profesor profesor = (Profesor) session.createQuery(
+				"SELECT p FROM Profesor p WHERE p.pro_id=" + id + "")
 				.uniqueResult();
 		session.close();
 		return profesor;
 	}
-	
-	public Asignatura devolverAsignatura(String des){
+
+	public Asignatura devolverAsignatura(String des, String curso) {
 		session = sessionFactory.openSession();
 		Asignatura asignatura = (Asignatura) session.createQuery(
-				"SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
+				"SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'  and a.curso.cur_des='"+curso+"'")
 				.uniqueResult();
 		session.close();
 		return asignatura;
 	}
-	
-	public boolean insertarProfAsignatura(Profesor profesor){
-		boolean pasa=true;
-		session =sessionFactory.openSession(); 
-		session.beginTransaction(); 
+
+	public boolean insertarProfAsignatura(Profesor profesor) {
+		boolean pasa = true;
+		session = sessionFactory.openSession();
+		session.beginTransaction();
 		try {
-		 session.saveOrUpdate(profesor); 
-		 System.out.println("Se ha insertado");
-		 session.getTransaction().commit();
-		session.close();
-		}catch(Exception e) {
+			session.saveOrUpdate(profesor);
+			System.out.println("Se ha insertado");
+			session.getTransaction().commit();
+			session.close();
+		} catch (Exception e) {
 			System.out.println("Error al modificar " + e);
-			pasa=false;
+			pasa = false;
 			session.getTransaction().rollback();
 		}
-		
+
 		return pasa;
+	}
+
+	public List<Profesor> consultaProfAsig(String nombre) {
+		session = sessionFactory.openSession();
+
+		Query query = session.createQuery("SELECT p from Profesor p where p.pro_nombre like '"+nombre+"%'");
+		List<Profesor> listaProfesor = query.list();
+		session.close();
+
+		return listaProfesor;
 	}
 }

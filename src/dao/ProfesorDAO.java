@@ -132,7 +132,8 @@ public class ProfesorDAO extends ActionSupport {
 		List<Asignatura> listAsig = new ArrayList<>();
 		if (arrayAsignaturas != null || arrayAsignaturas.length > 0) {
 			for (String a : arrayAsignaturas) {
-				listAsig.add(conexion.devolverAsignatura(a));
+				String parts[] = a.split(",");
+				listAsig.add(conexion.devolverAsignatura(parts[0].trim(),parts[1].trim()));
 			}
 			for (Asignatura a : listAsig) {
 				profesor.getAsignaturas().add(a);
@@ -194,6 +195,11 @@ public class ProfesorDAO extends ActionSupport {
 	// Consultas 
 	
 	public String consultarProfAsig() {
+		return SUCCESS;
+	}
+	
+	public String consEstAsig(){
+		setListadoProfesores(conexion.consultaProfAsig(profesor.getPro_nombre()));
 		return SUCCESS;
 	}
 }

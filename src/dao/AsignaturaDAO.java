@@ -68,69 +68,56 @@ public class AsignaturaDAO extends ActionSupport {
 	}
 
 	public String insertarAsignatura() {
-
+		//Se guarda el id del curso
 		int id = conexion.devolverIdCurso(asignatura.getCurso().getCur_des());
 
 		curso = asignatura.getCurso();
 		curso.setCur_id(id);
 		asignatura.setCurso(curso);
+		//Le paso al metodo de insertar la asignatura
 		boolean pasa = conexion.insertarAsignatura(asignatura);
-
+		//Si devuelve true limpiamos la lista y la volvemos a cargar
 		if (pasa) {
 			listadoAsignaturas.clear();
 			listadoAsignaturas = conexion.listarAsignaturas();
 			return SUCCESS;
 		} else {
+		//Si sale false devolvemos input 
 			System.out.println("error");
 			return INPUT;
 		}
 	}
 
 	public String borrarAsignatura() {
-		System.out.println(asignatura.getAsi_id());
+		//Le pasamos la asignatura que queremos borrar 
 		conexion.eliminarAsignatura(asignatura);
+		//Limpiamos y aztualizamos la lista
 		listadoAsignaturas.clear();
 		listadoAsignaturas = conexion.listarAsignaturas();
 		return SUCCESS;
 	}
 
 	public String abrirModificarAsignatura() {
+		//guardamos en una lista los cursos existentes
 		setListCursos(conexion.listarCursos());
+		//Limpiamos y guardamos los datos de la asignatura que hemos seleccionado
 		listadoAsignaturas.clear();
 		listadoAsignaturas = (ArrayList) dao.Leer("Asignatura", "where asi_id="+ asignatura.getAsi_id() + "");
 		asignatura = listadoAsignaturas.get(0);
 		return SUCCESS;
 	}
-
+	
+	
 	public String modificarAsignatura() {
+	
 		boolean pasa = true;
-
+		//Guardamos el id segun su descripcion
 		int id = conexion.devolverIdCurso(asignatura.getCurso().getCur_des());
 		curso = asignatura.getCurso();
 		curso.setCur_id(id);
 		asignatura.setCurso(curso);
-
-		Configuration configuration = new Configuration();
-		configuration.configure();
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-		Session session = sessionFactory.openSession();
-
-		session.beginTransaction();
-
-		try {
-			session.update(asignatura);
-			System.out.println("Se ha modificado");
-			session.getTransaction().commit();
-
-		} catch (Exception e) {
-			System.out.println("Error al modificar " + e);
-			pasa = false;
-			session.getTransaction().rollback();
-		} finally {
-			session.close();
-		}
-
-		// boolean pasa = conexion.modificarAsignatura(asignatura);
+		//Llamamos al metodo pasandole la asignatura para que nos la modifique
+		pasa=conexion.modificarAsignatura(asignatura);
 
 		if (pasa) {
 			listadoAsignaturas.clear();
@@ -141,21 +128,24 @@ public class AsignaturaDAO extends ActionSupport {
 		}
 	}
 	
-	
+	//Método para validar que se inserte correctamente la asignatura
 	public void validateInsertarAsignatura(){
+		//Compruebo que el campo no este vacío
 		if(asignatura.getAsi_des() == null || asignatura.getAsi_des().trim().equals("")){
 			abrirAddAsignatura();
 			addFieldError("asi_des", "Descripción vacía");
 		}else 
+			// Compruebo que la asignatura no exista
 		if(conexion.existeAsignatura(asignatura.getAsi_des(), asignatura.getCurso().getCur_des())){
 			abrirAddAsignatura();
 			addFieldError("asi_des", "asignatura existente en el curso");
 		}
+		//Compruebo que exista un curso
 		if(asignatura.getCurso().getCur_des()==null ) {
 			addFieldError("cur_id", "Debe existir un curso");
 		}
 	}
-	
+	//Método para validar que se Modifique correctamente la asignatura
 	public void validateModificarAsignatura(){
 		if(asignatura.getAsi_des() == null || asignatura.getAsi_des().trim().equals("")){
 			abrirAddAsignatura();
@@ -176,10 +166,12 @@ public class AsignaturaDAO extends ActionSupport {
 	//Consultas
 	
 	public String consultaCurAsig() {
+		//Mando success para que abra directamente el jsp
 		return SUCCESS;
 	}
 	
 	public String consAsigCur(){
+		//Lamo al metodo para que me liste las asignaturas de un curso mediante su descripción
 		setListadoAsignaturas(conexion.consultaCurAsig(asignatura.getCurso().getCur_des()));
 		return SUCCESS;
 	}

@@ -9,7 +9,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="css/editaEstudiantes.css">
-<script src="js/consultarEstAsig.js"></script>
+<script src="js/consultarProfAsig.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -17,12 +17,11 @@
 			<div class="col-11">
 				<div id="cuerpoConsEst">
 					<div class="buscador">
-						<s:form id="formConsultaEstAsig">
+						<s:form id="formConsultaProfAsig">
 							<div class="row mt-3">
 								<div class="col-md-12 text-center">
-									<input type="text" name="estudiante.est_ape1">
-									<button title="consultar"
-										class="btn btn-success consultarestasig">
+									<input type="text" name="profesor.pro_nombre">
+									<button title="consultar" class="btn btn-success consultarproasig">
 										<i class="fa fa-search" aria-hidden="true"></i>
 									</button>
 								</div>

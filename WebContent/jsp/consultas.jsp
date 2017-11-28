@@ -15,7 +15,7 @@
 			<div class="col-2 columna">
 				<button id="ConsultarCurAsig" class="btn btn-primary btnConsultas" onclick="action('consultarCurAsig')">Cur-Asign</button></div>
 			<div class="col-2 columna">
-				<button id="ConsultarCurEst" class="btn btn-primary btnConsultas" onclick="action('consultarCurEst')">Cur-Est</button></div>
+				<button id="ConsultarEstCur" class="btn btn-primary btnConsultas" onclick="action('ConsultarEstCur')">Cur-Est</button></div>
 			<div class="col-2 columna">
 				<button id="ConsultaEstAsig" class="btn btn-primary btnConsultas" onclick="action('ConsultaEstAsig')">Est-Asig</button></div>
 			<div class="col-2 columna">

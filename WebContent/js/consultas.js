@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("#ConsultaEstAsig").click(consultaEstAsigna);
 	$("#ConsultarProfAsig").click(consultarProfAsig);
-	$("#ConsultarCurAsig").click(consultarCurAsig);
+	$("#ConsultarEstCur").click(consultarEstCur);
 	$("#ConsultarCurEst").click(consultarCurEst);
 });
 
@@ -20,10 +20,10 @@ function consultaEstAsigna(){
 	//$("#mainConsultas").load('jsp/consultarEstudiante.jsp');
 }
 
-function consultarCurEst(){
+function consultarEstCur(){
 	$.ajax({
 		type: 'POST',
-        url:  "ConsultarCurEst",
+        url:  "ConsultarEstCur",
 //        data : dataForm,
         success:  function (response) {
         	$("#mainConsultas").html(response);
