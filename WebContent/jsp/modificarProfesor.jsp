@@ -23,7 +23,7 @@
 					
 					<input type="text" name="profesor.pro_ape2" label="Segundo Apellido" 
 					value="<s:property value="profesor.pro_ape2"/>">Segundo Apellido</input></br>
-					<s:fielderror/>
+					<s:fielderror style="color:red;"/>
 					<button title="confirmar" class="btn btn-primary confirmarMod"> CONFIRMAR</button>
 				</s:form>
 			</div>

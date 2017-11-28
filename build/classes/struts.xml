@@ -3,16 +3,16 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
-
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<package name="default" extends="struts-default">
 
 
-		<action name="ListadoEstudiantes" class="dao.EstudianteDAO"	method="listadoEstudiantes">
+		<action name="ListadoEstudiantes" class="dao.EstudianteDAO"
+			method="listadoEstudiantes">
 			<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
 		</action>
-		
+
 		<action name="BorrarEstudiante" class="dao.EstudianteDAO"
 			method="borrarEstudiantes">
 			<result name="success">jsp/mantenimientoEstudiantes.jsp</result>
@@ -47,7 +47,7 @@
 			<result name="input">jsp/addEstAsignatura.jsp</result>
 		</action>
 
-
+		
 		<action name="ListadoCursos" class="dao.CursoDAO" method="listadoCursos">
 			<result name="success">jsp/mantenimientoCursos.jsp</result>
 		</action>
@@ -70,8 +70,7 @@
 			<result name="success">jsp/mantenimientoCursos.jsp</result>
 			<result name="input">jsp/modificarCurso.jsp</result>
 		</action>
-		
-		
+
 		
 		<action name="ListadoAsignaturas" class="dao.AsignaturaDAO"
 			method="listadoAsignaturas">
@@ -104,11 +103,13 @@
 
 
 		
-		
-		<action name="ListadoProfesores" class="dao.ProfesorDAO" method="listadoProfesores">
+
+		<action name="ListadoProfesores" class="dao.ProfesorDAO"
+			method="listadoProfesores">
 			<result name="success">jsp/mantenimientoProfesores.jsp</result>
 		</action>
-		<action name="AbrirInsertarProfesor" class="dao.ProfesorDAO" method="abrirInsertarProfesor">
+		<action name="AbrirInsertarProfesor" class="dao.ProfesorDAO"
+			method="abrirInsertarProfesor">
 			<result name="success">jsp/addProfesor.jsp</result>
 		</action>
 		<action name="InsertarProfesor" class="dao.ProfesorDAO" method="insertarProfesor">
@@ -118,10 +119,12 @@
 		<action name="BorrarProfesor" class="dao.ProfesorDAO" method="borrarProfesor">
 			<result name="success">jsp/mantenimientoProfesores.jsp</result>
 		</action>
-		<action name="AbrirModificarProfesor" class="dao.ProfesorDAO" method="abrirModificarProfesor">
+		<action name="AbrirModificarProfesor" class="dao.ProfesorDAO"
+			method="abrirModificarProfesor">
 			<result name="success">jsp/modificarProfesor.jsp</result>
 		</action>
-		<action name="ModificarProfesor" class="dao.ProfesorDAO" method="modificarProfesor">
+		<action name="ModificarProfesor" class="dao.ProfesorDAO"
+			method="modificarProfesor">
 			<result name="success">jsp/mantenimientoProfesores.jsp</result>
 			<result name="input">jsp/modificarProfesor.jsp</result>
 		</action>
@@ -132,6 +135,30 @@
 			<result name="success">jsp/mantenimientoProfesores.jsp</result>
 			<result name="input">jsp/addProAsignatura.jsp</result>
 		</action>
+		
+		
+		<action name="ConsultarProfAsig" class="dao.ProfesorDAO" method="consultarProfAsig">
+	 		<result name="success">jsp/consultarProfAsig.jsp</result>
+	 	</action>
+	 	<action name="ConsultaCurAsig" class="dao.AsignaturaDAO" method="consultaCurAsig">
+	 		<result name="success">jsp/consultarCurAsig.jsp</result>
+	 	</action>
+	 	<action name="ConsultarCurEst" class="dao.CursoDAO" method="consultarCurEst">
+	 		<result name="success">jsp/consultarCurEst.jsp</result>
+	 	</action>
+	 	
+	 	<action name="ConsAsigCur" class="dao.AsignaturaDAO" method="consAsigCur">
+			<result name="success">jsp/consultarCurAsig.jsp</result>
+		</action>
+	 	<action name="ConsultaEstAsig" class="dao.EstudianteDAO" method="consultaEstAsig">
+	 		<result name="success">jsp/consultarEstAsig.jsp</result>
+	 	</action>
+	 
+		<action name="ConsEstAsig" class="dao.EstudianteDAO" method="consEstAsig">
+			<result name="success">jsp/consultarEstAsig.jsp</result>
+		</action>
 
+		
+		
 	</package>
 </struts>	 

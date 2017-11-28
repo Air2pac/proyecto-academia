@@ -16,11 +16,11 @@
 				<s:form id="InsertarProfesor">
 <!-- 				<input style="display: none;" type="text" name="estudiante.est_id"></input></br> -->
 					<input type="text" name="profesor.pro_nombre" label="Nombre del profesor" >Nombre del profesor</input></br>
-					<s:fielderror/>
+					
 					<input type="text" name="profesor.pro_ape1" label="Primer Apellido" >Primer Apellido</input></br>
-					<s:fielderror/>
+					
 					<input type="text" name="profesor.pro_ape2" label="Segundo Apellido" >Segundo Apellido</input></br>
-					<s:fielderror/>
+					<s:fielderror style="color:red;"/>
 					<button title="confirmar" class="btn btn-primary confirmarAdd"> CONFIRMAR</button>
 				</s:form>
 			</div>

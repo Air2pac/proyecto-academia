@@ -1,0 +1,25 @@
+#mainMantenimiento{
+	max-height: 530px;
+	overflow: auto;
+}
+
+#menuSuperiorConsultas{
+	height: 60px;
+	background: #400000;
+}
+.columna{
+	padding-top: 11px;
+}
+.columna button {
+	width: 100%;
+	cursor: pointer;
+}
+.columna a{
+	width: 100%;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.derecha{
+	text-align: center;
+}

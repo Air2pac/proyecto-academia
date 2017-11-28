@@ -30,7 +30,7 @@ function modificar(event){
 	var i = $(this).parent().siblings().first().children().first();
 	$(i).attr('checked','checked');
 	var dataForm = $('#eliminarEstudianteForm').serialize();
-	alert(i);
+	//alert(i);
 	$.ajax({
 		type: 'POST',
         url:  "AbrirModificarEstudiante",
@@ -71,7 +71,7 @@ function addAsignatura(event){
 	var i = $(this).parent().siblings().first().children().first();
 	$(i).attr('checked','checked');
 	var dataForm = $('#eliminarEstudianteForm').serialize();
-	alert(i);
+	//alert(i);
 	$.ajax({
 		type: 'POST',
         url:  "AbrirAddEstAsign",

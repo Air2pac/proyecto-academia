@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.transaction.Transactional;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import Persistencia.ConexionEstudiante;
@@ -124,8 +126,7 @@ public class EstudianteDAO extends ActionSupport {
 	public String abrirAddEstAsign() {
 		setListAsignatura(conexion.listarAsingatura());
 		listadoEstudiantes.clear();
-		listadoEstudiantes = (ArrayList) dao.Leer("Estudiante", "where est_id="
-				+ estudiante.getEst_id());
+		listadoEstudiantes = (ArrayList) dao.Leer("Estudiante", "where est_id="+ estudiante.getEst_id());
 		estudiante = listadoEstudiantes.get(0);
 		return SUCCESS;
 	}
@@ -135,9 +136,10 @@ public class EstudianteDAO extends ActionSupport {
 		List<Asignatura> listAsig = new ArrayList<>();
 		if (arrayAsignaturas != null || arrayAsignaturas.length > 0) {
 			for (String a : arrayAsignaturas) {
-				listAsig.add(conexion.devolverAsignatura(a));
+				String parts[] = a.split(",");
+				listAsig.add(conexion.devolverAsignatura(parts[0].trim(),parts[1].trim()));
 			}
-
+		
 			for (Asignatura a : listAsig) {
 				estudiante.getAsignaturas().add(a);
 			}
@@ -235,4 +237,17 @@ public class EstudianteDAO extends ActionSupport {
 		}else
 			return false;
 		}
+	
+	//Consultas
+	public String consultaEstAsig() {
+		return SUCCESS;
+	}
+	
+	public String consEstAsig(){
+	
+		setListadoEstudiantes(conexion.consultaEstAsig(estudiante.getEst_ape1()));
+		
+		
+		return SUCCESS;
+	}
 }

@@ -147,9 +147,12 @@ public class AsignaturaDAO extends ActionSupport {
 			abrirAddAsignatura();
 			addFieldError("asi_des", "Descripción vacía");
 		}else 
-		if(conexion.existeAsignatura(asignatura.getAsi_des())){
+		if(conexion.existeAsignatura(asignatura.getAsi_des(), asignatura.getCurso().getCur_des())){
 			abrirAddAsignatura();
-			addFieldError("asi_des", "asignatura existente");
+			addFieldError("asi_des", "asignatura existente en el curso");
+		}
+		if(asignatura.getCurso().getCur_des()==null ) {
+			addFieldError("cur_id", "Debe existir un curso");
 		}
 	}
 	
@@ -158,9 +161,26 @@ public class AsignaturaDAO extends ActionSupport {
 			abrirAddAsignatura();
 			addFieldError("asi_des", "Descripción vacía");
 		}else 
-		if(conexion.existeAsignatura(asignatura.getAsi_des())){
+		if(conexion.existeAsignatura(asignatura.getAsi_des(), asignatura.getCurso().getCur_des())){
 			abrirAddAsignatura();
-			addFieldError("asi_des", "asignatura existente");
+			addFieldError("asi_des", "asignatura existente en el curso");
 		}
+//		if(curso==null || listCursos.size()==0) {
+//			addFieldError("curso", "Debe existir un curso");
+//		}
+	}
+	
+	
+	
+	
+	//Consultas
+	
+	public String consultaCurAsig() {
+		return SUCCESS;
+	}
+	
+	public String consAsigCur(){
+		setListadoAsignaturas(conexion.consultaCurAsig(asignatura.getCurso().getCur_des()));
+		return SUCCESS;
 	}
 }

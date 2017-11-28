@@ -17,7 +17,9 @@
 					<input type="text" name="asignatura.asi_des"
 						label="Descripción asignatura">Descripción de la asignatura</input>
 					</br>
-					<s:fielderror/>
+					<input  type="text" name="asignatura.curso.cur_id" style="display:none;"></input>
+					</br>
+					<s:fielderror style="color:red;"/>
 					<s:select list="listCursos" name="asignatura.curso.cur_des" />
 					<button title="confirmar" class="btn btn-primary confirmarAdd">
 						CONFIRMAR</button>

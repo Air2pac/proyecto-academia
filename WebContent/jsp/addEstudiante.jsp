@@ -22,7 +22,7 @@
 					<input type="text" name="estudiante.est_ape1" label="Apellido1 estudiante">Apellido1</input></br>
 					
 					<input type="text" name="estudiante.est_ape2" label="Apellido2 estudiante">Apellido2</input></br>
-					<s:fielderror/>
+					<s:fielderror style="color:red;"/>
 					<button title="confirmar" class="btn btn-primary confirmarAdd"> CONFIRMAR</button>
 				</s:form>
 			</div>

@@ -24,7 +24,7 @@ public class Curso  {
 	@Column(name="cur_des")
 	private String cur_des;
 	
-	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE })
+	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name="cur_id", nullable = false, insertable = false, updatable = false)
 	private List<Asignatura> asignaturas;
 

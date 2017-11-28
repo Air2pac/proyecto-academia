@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
+
+import org.hibernate.annotations.Proxy;
 
 @Entity
 @Table(name="pra_estudiantes")
@@ -34,7 +37,7 @@ public class Estudiante {
 	@Column(name="est_ape2")
 	private String est_ape2;
 	
-	@ManyToMany(cascade = {CascadeType.ALL}) 
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER) 
 	@JoinTable(name="pra_asixest", joinColumns={@JoinColumn(name="est_id")}, inverseJoinColumns={@JoinColumn(name="asi_id")}) 
 	private Set<Asignatura> asignaturas = new HashSet<>();
 	
@@ -106,10 +109,4 @@ public class Estudiante {
 		this.asignaturas = asignaturas;
 	}
 	
-	@Override
-	public String toString() {
-		return "Estudiante [est_id=" + est_id + ", est_dni=" + est_dni + ", est_nombre=" + est_nombre + ", est_ape1="
-				+ est_ape1 + ", est_ape2=" + est_ape2 + ", asignaturas=" + asignaturas + "]";
-	}
-
 }

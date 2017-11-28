@@ -16,6 +16,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Proxy;
 
 @Entity
 @Table(name="pra_asignaturas")
@@ -32,11 +37,9 @@ public class Asignatura {
 	private String asi_des;
 	
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas" )
-	private Set<Estudiante> estudiantes = new HashSet<>();
-	
+	private Set<Estudiante> estudiantes;
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="asignaturas" )
-	private Set<Profesor> profesores = new HashSet<>();
-	
+	private Set<Profesor> profesores;
 	
 	public Asignatura() {
 		this.asi_id = 0;
@@ -75,6 +78,8 @@ public class Asignatura {
 		this.asi_des = asi_des;
 	}
 
+	
+
 	public Set<Estudiante> getEstudiantes() {
 		return estudiantes;
 	}
@@ -91,6 +96,9 @@ public class Asignatura {
 		this.profesores = profesores;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "Asignatura [asi_id=" + asi_id + ", curso=" + curso
+				+ ", asi_des=" + asi_des + ", estudiantes=" + estudiantes + "]";
+	}
 }

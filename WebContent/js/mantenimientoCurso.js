@@ -10,7 +10,7 @@ function eliminarCur(event){
 	var i = $(this).parent().siblings().first().children().first();
 	$(i).attr('checked','checked');
 	var dataForm = $('#EliminarCursoForm').serialize();
-	alert("Pasa a borrar");
+	//alert("Pasa a borrar");
 	
 	
 	$.ajax({

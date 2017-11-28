@@ -1,0 +1,15 @@
+input.text {
+    border: 1px solid #222;
+    background: #fff;
+}
+
+input.submit{
+  border: 1px dotted #999;
+  border-radius: 0;
+
+  -webkit-appearance: none;
+}
+.consultarAsigcur{
+	margin-bottom: 30px;
+	background-color: blue;
+}

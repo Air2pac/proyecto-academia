@@ -16,7 +16,7 @@
 				<s:form id="AddCurso">
 <!-- 				<input style="display: none;" type="text" name="estudiante.est_id"></input></br> -->
 					<input type="text" name="curso.cur_des" label="Descripción del curso" >Descripción del curso</input></br>
-					<s:fielderror/>
+					<s:fielderror style="color:red;"/>
 					<button title="confirmar" class="btn btn-primary confirmarAdd"> CONFIRMAR</button>
 				</s:form>
 			</div>

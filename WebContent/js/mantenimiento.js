@@ -16,23 +16,3 @@ function action(id){
 		}
 	});
 }
-/*
-function eliminar(event){
-	event.preventDefault();
-	var i = $(this).parent().siblings().first().children().first();
-	$(i).attr('checked','checked');
-	var dataForm = $('#eliminarEstudianteForm').serialize();
-	alert(i);
-	$.ajax({
-		type: 'POST',
-        url:  "BorrarEstudiante",
-        data : dataForm,
-        success:  function (response) {
-        	$(i).parentsUntil('tbody').last().css('display','none');
-          $('.container').html(response);
-        },
-        error: function(response){
-        	alert("ERROR ocurrido");
-        }
-	});
-}*/

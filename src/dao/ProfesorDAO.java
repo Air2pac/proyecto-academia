@@ -186,5 +186,14 @@ public class ProfesorDAO extends ActionSupport {
 		}
 	
 	}
+	
+	
 
+	
+	
+	// Consultas 
+	
+	public String consultarProfAsig() {
+		return SUCCESS;
+	}
 }

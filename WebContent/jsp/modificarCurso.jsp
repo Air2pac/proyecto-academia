@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,7 +16,7 @@
 				<s:form id="ModificarCurso">
 					<input style="display: none;" type="text" name="curso.cur_id"  value="<s:property value="curso.cur_id"/>"></input></br>
 					<input type="text" name="curso.cur_des" label="Descripción Curso" value="<s:property value="curso.cur_des"/>" >Descripción Curso</input></br>
-					<s:fielderror/>
+					<s:fielderror style="color:red;"/>
 					<button title="confirmar" class="btn btn-primary confirma"> CONFIRMAR</button>
 				</s:form>
 			</div>

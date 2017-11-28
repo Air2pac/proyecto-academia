@@ -28,7 +28,7 @@ function modificar(event){
 	var i = $(this).parent().siblings().first().children().first();
 	$(i).attr('checked','checked');
 	var dataForm = $('#eliminarAsignaturaForm').serialize();
-	alert(i);
+	//alert(i);
 	$.ajax({
 		type: 'POST',
         url:  "AbrirModificarAsignatura",

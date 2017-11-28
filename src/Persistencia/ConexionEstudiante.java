@@ -45,7 +45,7 @@ public class ConexionEstudiante {
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
-		System.out.println("--------" + estudiante.getEst_nombre());
+		
 		try {
 		 session.save(estudiante); 
 		 System.out.println("Se ha insertado");
@@ -62,7 +62,7 @@ public class ConexionEstudiante {
 	
 	public List<Asignatura> listarAsingatura(){
 		session = sessionFactory.openSession();
-		Query query = session.createQuery("SELECT a.asi_des FROM Asignatura a");
+		Query query = session.createQuery("SELECT a.asi_des, a.curso.cur_des FROM Asignatura a");
 		List<Asignatura> listaAsignaturas = query.list();
 		session.close();
 		return listaAsignaturas;
@@ -75,11 +75,13 @@ public class ConexionEstudiante {
 		return listaEstudiantes;
 	}
 	
-	public Asignatura devolverAsignatura(String des){
+	public Asignatura devolverAsignatura(String des ,String curso){
 		session = sessionFactory.openSession();
 		Asignatura asignatura = (Asignatura) session.createQuery(
-				"SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "'")
+				"SELECT a FROM Asignatura a WHERE a.asi_des='" + des + "' and a.curso.cur_des='"+curso+"'")
 				.uniqueResult();
+		
+		System.out.println(asignatura.getAsi_des());
 		session.close();
 		return asignatura;
 	}
@@ -88,16 +90,17 @@ public class ConexionEstudiante {
 		boolean pasa=true;
 		session =sessionFactory.openSession(); 
 		session.beginTransaction(); 
-		System.out.println("--------" + estudiante.getEst_nombre());
 		try {
 		 session.saveOrUpdate(estudiante); 
 		 System.out.println("Se ha insertado");
 		 session.getTransaction().commit();
-		session.close();
+
 		}catch(Exception e) {
 			System.out.println("Error al modificar " + e);
 			pasa=false;
 			session.getTransaction().rollback();
+		}finally{
+			session.close();
 		}
 		
 		return pasa;
@@ -118,6 +121,19 @@ public class ConexionEstudiante {
 		
 
 		return existe;
+	}
+	
+	public List<Estudiante> consultaEstAsig(String ape1){
+		
+		session = sessionFactory.openSession();
+		
+		Query query = session.createQuery("SELECT e FROM Estudiante e where e.est_ape1 like '" + ape1 + "%'");
+		List<Estudiante> listaEstudiantes = query.list();
+		System.out.println(listaEstudiantes.size());
+		session.close();
+		
+
+		return listaEstudiantes;
 	}
 	
 }

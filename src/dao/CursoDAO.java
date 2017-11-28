@@ -106,4 +106,10 @@ public class CursoDAO extends ActionSupport {
 			addFieldError("cur_des", "Curso existente");
 		}
 	}
+	
+	//consultas
+	
+	public String consultarCurEst() {
+		return SUCCESS;
+	}
 }

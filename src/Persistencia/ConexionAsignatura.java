@@ -126,12 +126,12 @@ public class ConexionAsignatura {
 		return curso.getCur_id();
 	}
 	
-	public boolean existeAsignatura(String des){
+	public boolean existeAsignatura(String des, String cur){
 		boolean existe = false;
 		
 		session = sessionFactory.openSession();
 		
-		Query query = session.createQuery("SELECT a FROM Asignatura a where a.asi_des='"+des+"'");
+		Query query = session.createQuery("SELECT a FROM Asignatura a where a.asi_des='"+des+"' and a.curso.cur_des ='"+cur+"'");
 		List<Asignatura> listaAsignaturas = query.list();
 		if(listaAsignaturas.size()>0){
 			existe=true;
@@ -141,4 +141,20 @@ public class ConexionAsignatura {
 
 		return existe;
 	}
+	
+	public List<Asignatura> consultaCurAsig(String cur){
+
+		
+		session = sessionFactory.openSession();
+		
+		Query query = session.createQuery("SELECT a FROM Asignatura a where a.curso.cur_des ='"+cur+"'");
+		List<Asignatura> listaAsignaturas = query.list();
+		
+		session.close();
+		
+
+		return listaAsignaturas;
+	}
+	
+
 }
